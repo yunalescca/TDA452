@@ -1,3 +1,6 @@
+-- * Examples from Learn You A Haskell
+
+
 head' = head [1,2,3] -- prints 1
 
 tail' = tail [1,2,3] -- prints [2,3]
