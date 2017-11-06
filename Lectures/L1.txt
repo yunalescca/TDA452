@@ -1,0 +1,108 @@
+- FP is different becasue it's not based on the idea that there are things out there with states, like it's a memory
+
+- Not objects that you change by sending messages or commands
+
+- Built around mathematical concepts and functions
+
+- x = 5 is a definition, not a declaration of variable. All definitions are immutable (introduced with an equal sign)
+
+- Language is built up from definitions and values. We build expressions that use these values. We don't modify variables in FP
+
+- toEuro sek = sek / exhangeRate -- sek is NOT of some type toEuro. toEuro is a function which has one argument
+
+-
+toEuro sek = sek / exhangeRate
+
+toSEK euro = euro * exhangeRate
+::: The toEuro definition ends where toSek definition starts, because they are in the same column. We could also write
+toEuro sek = sek 
+    /
+   exhangeRate
+, and this would still be the same expression.  
+
+- We define properties which we expect or other definitions to satisfy. Convention to name these prop_... which we expect to be True or False
+
+- We can define operators which is a definitions but only symbols, ~==
+
+m ~== n = abs (m - n) < epsilon
+    where epsilon = 10e-14
+
+prop_exhange s = toSEK (toEU s) ~== s
+
+- The guards
+abs' x | x < 0 = -x   reads: abs prime of x, in the case that x is less than zero, then x is -x
+
+- If the first guard is true, the second guard will always be true. You *could* write True = x on the second guard. OR you could write 
+| otherwise = x
+In the Prelude, otherwise is just a Bool (otherwise :: Bool) (and it has the value True)
+instead of
+| x >= 0 = x 
+
+- Pattern matching
+Using a value on the left hand side
+Instead of writing power n k | k == 0 = 1,
+we can write
+power n 0 = 1
+
+==============================================
+
+- Haskell is a strongly typed language like Java
+
+- type declaration
+power :: Integer -> Integer -> Integer
+
+- Functions
+funcion1 arg1 arg2 = let arg1' = abs arg1 in
+                 function2 arg1' arg2
+
+- Tuples: length cannot vary but you can mix different types (Bool, Double)
+
+example :: Double -> (Bool, Double)
+example n = (n < 0, abs n)
+To extract elements
+fst (example n) gives first element
+snd (example n) gives second element
+
+Can also use pattern matching and define our own function
+second (x,y) = y
+
+- Lists: collection of elements, all of the same type 
+
+[]
+it :: [a] (any type)
+
+1 : []
+[1]
+it :: [Integer]
+
+The colon is called cons (constructing a list)
+
+2 : [3,4]
+[2,3,4]
+
+- All basic operations will operate at the front of the list
+
+- String == [Char]
+
+- summary
+summary [] = "Nothing"
+summary [x] = "Just " ++ x , a list with just one element
+summary(x : xs) = " x ++ "stuffs" , the first element of a list, and then the rest of the list. At least one element in xs or it would PATTERN MATCH to summary[x]
+
+- The space operator binds more tightly than any other operator
+
+- len :: Num a => [t] -> a
+reads: this function will take a list, with any type of elements, and give you back an a, but this a has to be a number
+
+- The type Haskell prefers is more general, we could instead define it as len :: [t] -> Integer, or -> Int
+
+-  List comprehension is something which is taken out of set theory notation. 
+
+The RHS of the pipe in a LC are the *generators*, which will generate the list. You can have more than one generator 
+
+
+
+
+
+
+

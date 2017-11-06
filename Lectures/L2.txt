@@ -1,0 +1,13 @@
+Data types
+==========
+
+Create good representations of the data we want to represent. 
+= Modelling the data in an appropriate way
+
+Enumeration types: keyword 'data', the definitions on the RHS are the values of the datatype.
+
+We need to tell Haskell how the value should be printed. Some values we don't want to print: like functions (they are mathematical inputs/outputs)
+
+Need to derive Show. It creates function show:: a -> String. 
+
+You would like a model that restricts the range from 2 to 10. Haskell doesn't have numeric range types, bc most of the types we are using are statically checked (not checked at runtime), so ranged types would be difficult to handle at run time.
