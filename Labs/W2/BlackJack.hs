@@ -14,7 +14,6 @@ empty = Empty
 
 -- | Returns the value of the given rank
 valueRank :: Rank -> Integer
-
 valueRank (Numeric int) = int
 valueRank Ace           = 11
 valueRank _             = 10
@@ -46,3 +45,25 @@ gameOver = undefined
 -- | 
 winner :: Hand -> Hand -> Player
 winner = undefined 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

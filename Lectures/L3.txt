@@ -1,0 +1,55 @@
+LISTS
+=====
+
+- All the elemnts in the list need to be of the same type 
+
+- Two kinds of list: empty or non-empty
+
+- Lists in Haskell are polymorphic - can be of any type
+
+- data List a = Empty | Add a (List a) --- can add parameters 
+
+- Pseudokode:   data [a] = [ ] | a : [a]
+
+- collect : when you run quickCheck you will see how many n:s are 
+less than the length of xs, and how many are bigger than it.
+For instance, when I run quickCheck it says 53% False, and 47%
+True, meaning 53% of n is less than or equal to the length of xs.
+
+- classify: we specify the extreme values when n is less than 0 or
+greater than the length of the list. When we get those n, we label
+them as "extreme", so when we run quickCheck, we will see how many
+of those n:s we received. For instance, I get max 59% extreme, meaning 41% of my n:s are greater than 0 and less than or equal to the length of the list
+
+- quickSort: Works recursively on smaller list, which are taken/computed from the bigger list. The idea of quicksort is you take an element from the list you want to sort, and you sort of ... that thing in the middle, and you take all guys which are smaller than that element and put them on one side, and all the bigger ones on the other side. You will recursively sort the sublist, and in the end you will get a sorted list.
+
+- Higher order functions: "the heart and soul of functional programming". A function which has a function as an argument, the function is part of the return type.
+
+function map: the first argument is a function (map :: (a->b) -> [[a] -> [b]). 
+
+filter :: (a -> Bool) -> [a] -> [a]
+So we can write 
+    filter even [1,2,3,4,5], because
+    even :: a -> Bool, which was the argument for the filter function
+
+map is also a polymorphic function (any type) : takes any function of one argument, any list of argument and will give back a list of the result
+
+- HOF are really imported to the functional programming style 
+
+- foldr : is a general combining function which takes an operator, a base case 
+
+foldr op z []     = z
+foldr op z (x:xs) = x `op` foldr op z xs
+    the first element x, and apply the operator on the rest of the list
+
+
+
+
+
+
+
+
+
+
+
+
