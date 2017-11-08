@@ -1,6 +1,5 @@
 -- | Data types for card games
 module Cards where
-()
 import Test.QuickCheck
 import System.Random
 
