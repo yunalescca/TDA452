@@ -2,6 +2,7 @@ module BlackJack where
 import Cards
 import RunGame
 import System.Random
+import Test.QuickCheck hiding (shuffle)
 
 -- * Assignment 3.2
 
@@ -15,6 +16,8 @@ size hand 2
 	= 2
 
 -}
+
+-----------------------------------------------------------------------------
 
 -- * Assignment 3.4
 
@@ -109,12 +112,12 @@ draw Empty _           = error "draw: the deck is empty"
 draw (Add c deck) hand = (deck, (Add c hand))
 
 
--- |
+-- | Returns the bank's hand with 16 or higher as value
 playBank :: Hand -> Hand
 playBank deck = snd (playBank' deck Empty)
 
 
--- |
+-- | Helper function to calculate the value of the bank's hand
 playBank' :: Hand -> Hand -> (Hand, Hand)
 playBank' deck bankHand 
     | value bankHand < 16 = playBank' deck' (bankHand')
@@ -123,23 +126,90 @@ playBank' deck bankHand
     where (deck', bankHand') = draw deck bankHand
 
 
--- |
-{-shuffle :: StdGen -> Hand -> Hand 
-shuffle g hand = 
-    where (card', oldHand) = removeCard oneRanomInteger g hand-}
+-- | Shuffles a deck 
+shuffle :: StdGen -> Hand -> Hand 
+shuffle g hand 
+    | size hand /= 0 = Add (getCard index hand) 
+                       $ shuffle g (removeCard index hand)
+    | otherwise      = Empty
+        where index  = oneRandomInteger g (size hand)
 
--- | 
+
+-- | Helper function: gets the n:th card from the deck
+getCard :: Integer -> Hand -> Card
+getCard 1 (Add c _) = c
+getCard n (Add c h) = getCard (n - 1) h
+
+
+-- | Helper function: removes the n:th card from the deck
 removeCard :: Integer -> Hand -> Hand
-removeCard _ Empty = Empty
-removeCard nthCard (Add c h)
-    | nthCard == 1 = h
-    | otherwise    = Add c (removeCard (nthCard - 1) h)
+removeCard 1 (Add _ h) = h
+removeCard nthCard (Add c h) = Add c (removeCard (nthCard - 1) h)
     
 
--- |
-oneRanomInteger :: StdGen -> Integer -> Integer
-oneRanomInteger g sizeDeck  = n1
+-- | Generates a random integer
+oneRandomInteger :: StdGen -> Integer -> Integer
+oneRandomInteger g sizeDeck  = n1
     where (n1, g1)          = randomR (1, sizeDeck) g
+
+
+-----------------------------------------------------------------------------
+
+-- | PROPERTIES 
+
+-- | Checks if <+) is associative
+prop_onTopOf_assoc :: Hand -> Hand -> Hand -> Bool
+prop_onTopOf_assoc p1 p2 p3 =
+    p1 <+ (p2 <+ p3) == (p1 <+ p2) <+ p3
+
+
+-- | Checks if size of combined hands is the same as size of the 
+-- two individual hands
+prop_size_onTopOf :: Hand -> Hand -> Bool
+prop_size_onTopOf p1 p2 = 
+    size (p1 <+ p2) == size p1 + size p2
+
+
+-- | Checks if a card is in a deck before it has been shuffled,
+-- then it should be in the deck afterwards as well
+prop_shuffle_sameCards :: StdGen -> Card -> Hand -> Bool
+prop_shuffle_sameCards g c h =
+    c `belongsTo` h == c `belongsTo` shuffle g h
+
+-- Helper function: Checks if card is in a hand
+belongsTo :: Card -> Hand -> Bool
+c `belongsTo` Empty = False
+c `belongsTo` (Add c' h) = c == c' || c `belongsTo` h
+
+
+-- | Checks if the size of the hans is the same before
+-- and afterwards it has been shuffled
+prop_size_shuffle :: StdGen -> Hand -> Bool
+prop_size_shuffle g h =
+    size h == size (shuffle g h)
+
+-----------------------------------------------------------------------------
+
+implementation = Interface
+  { iEmpty     = empty
+  , iFullDeck  = fullDeck
+  , iValue     = value
+  , iGameOver  = gameOver
+  , iWinner    = winner 
+  , iDraw      = draw
+  , iPlayBank  = playBank
+  , iShuffle   = shuffle
+  }
+
+main :: IO ()
+main = runGame implementation
+
+
+
+
+
+
+
 
 
 
