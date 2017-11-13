@@ -1,0 +1,49 @@
+Higher-Order Functions
+======================
+
+-- First class piece of data
+
+-- A function which takes another function as a parameter
+
+-- Anonymous functions: lambda expressions. Instead of using local definitions of help functions we can use a lambda expression. 
+Building a function that we need from existing functions. 
+An expression which defines a function without giving it a name (anonymous function). A function defined by describing what the argument is.
+A nameless function
+
+-- Different ways of building functions. The standard way including local functions (naming functions), lambda expressions, *section*. 
+There's a shorthand for building functions from operators. So remember an operator is a two argument function, and the arguments of an operator is written on either side of it. Haskell has a very neat trick for building functions. By taking an operator and providing one but not both of the arguments. So we have an operator with one argument, which is a function that is waiting for its other argument. 
+E.g, (+1) is a function that adds 1 to its argument, so the LHS of the operator is missing which is the parameter of the function. 
+map (+1) [1,2,3] == [2,3,4]
+
+-- Function definitions -> -> -> 
+Why do we use the arrows? 
+When we write f 'a' True "hello" we separate them by spaces. The space character that we put between f and the arguments is an invisible operator. The function application operator (apply operator), which associates to the left
+((f 'a') True) "hello"
+
+-- hlint gives stylistic hints
+
+-- Presedence defines in what order Haskell will perform operations. An operator can have precedence between 0 and 8, where 8 is the highest.
+* has infixl 7 (left)
++     infixl 6
+||    infixr 2 
+So you often don't need brackets around function operations. 
+
+
+-- The dot in haskell is function composition operator (f . g == f "boll" g)
+
+
+-- Eta reduction
+Instead of writing function x = expression x, we can write function = expression
+
+
+-- LE are meant to avoid repeated patterns of computations. Building a function on the spot without giving it a name. 
+
+-- sections: can build functions by taking operators providing one but not both arguments
+
+-- Partial application: can build functions by taking a func of many args and giving it some but not all of its arguments
+
+
+
+
+
+
