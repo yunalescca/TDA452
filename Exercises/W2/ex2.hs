@@ -1,7 +1,7 @@
 -- * Exercise week 2
 
 import Test.QuickCheck
-import Data.List(sort)
+import Data.List(sort, nub)
 
 -- * 1: maxi x y returns the maximum of x and y
 
@@ -53,7 +53,7 @@ fib n = fib (n - 1) + fib (n - 2)
 
 -----------------------------------------------------------------------------
 
--- * 5: Factors
+-- * 5: Factors. Returns the smallest factor which is not 1, for a number n
 smallestFactor :: Integer -> Integer
 smallestFactor 1 = 1
 smallestFactor n = allFactors n !! 1
@@ -63,10 +63,23 @@ allFactors n = [x | x <- [1..n], n `mod` x == 0]
 -----------------------------------------------------------------------------
 
 -- * 6: Multiplying list elements
+multiply :: Num a => [a] -> a
+multiply []     = 1
+multiply (x:xs) = x * multiply xs
 
 -----------------------------------------------------------------------------
 
 -- * 7: Avoiding duplicates
+duplicates :: Eq a => [a] -> Bool
+duplicates [] = False
+duplicates (x:xs) = x `elem` xs || duplicates xs
+
+removeDuplicates :: Eq a => [a] -> [a]
+removeDuplicates []  = []
+removeDuplicates [x] = [x]
+removeDuplicates (x:xs) 
+    | x `elem` xs = removeDuplicates xs
+    | otherwise   = x : removeDuplicates xs
 
 -----------------------------------------------------------------------------
 
@@ -76,6 +89,26 @@ allFactors n = [x | x <- [1..n], n `mod` x == 0]
 
 -- * 9: Defining types
 
+data Month = Jan | Feb | Mar | Apr | May | Jun |
+             Jul | Aug | Sep | Oct | Nov | Dec
+    deriving (Show, Eq)
+
+
+data Date = Date {year::Integer, month::Month, day::Integer}
+    deriving Show
+
+
+daysInMonth :: Month -> Integer -> Integer
+daysInMonth Feb year = if year `mod` 4 == 0 then 29 else 28
+daysInMonth month _ 
+    | month `elem` [Jan, Mar, May, Jul, Aug, Oct, Dec] = 31 -- instead of writing month == Jan || month = Mar .. 
+    | otherwise = 30
+
+validDate :: Date -> Bool
+validDate (Date year month day) = day >= 1 && day <= (daysInMonth month year) 
+
+tomorrow :: Date -> Date
+tomorrow (Date year month day) = undefined
 
 
 
