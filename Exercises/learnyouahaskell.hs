@@ -15,6 +15,9 @@ take' n = take n [1,2,3] -- prints the first n element from the list
 
 drop' n = drop n [1,2,3] -- drops  the first n element from the list
 
+-- tail [1..20] == drop 1 [1..20] , only difference is tail fails on the empty list
+-- head [1..20] == take 1 [1..20]
+
 -----------------------------------------------------------------------------
 
 elem' n = n `elem` [1,2,3,4] -- checks if n is an element in the list
