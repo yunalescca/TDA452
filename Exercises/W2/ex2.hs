@@ -1,0 +1,117 @@
+-- * Exercise week 2
+
+import Test.QuickCheck
+import Data.List(sort)
+
+-- * 1: maxi x y returns the maximum of x and y
+
+maxi :: Ord a => a -> a -> a
+maxi x y 
+    | x >= y    = x
+    | otherwise =  y
+
+prop_maxi1 x y = maxi x y == max x y
+prop_maxi2 x y = maxi x y == x || maxi x y == y
+prop_maxi3 x y = maxi x y >= x && maxi x y >= y
+
+-----------------------------------------------------------------------------
+
+-- * 2: sum of squares
+-- sumsq n returns 1*1 + 2*2 + ... + n*n
+
+sumsq :: Int -> Int
+sumsq 1 = 1
+sumsq n =  n * n + sumsq (n - 1)
+
+sumsq2 n = n * (n + 1) * (2 * n + 1) `div` 6
+
+prop_sum n = n > 0 ==> sumsq n == sumsq2 n
+
+-----------------------------------------------------------------------------
+
+-- * 3: Hanoi puzzle
+{- 
+
+hanoi 0 = 0
+hanoi 1 = 1
+hanoi 2 = 3 
+hanoi 3 = 7  (2 * hanoi (2) + 1)
+hanoi 4 = 15 (2 * hanoi (3) + 1)
+
+-}
+
+hanoi :: Integer -> Integer
+hanoi 0 = 0
+hanoi n = 2 * hanoi (n-1) + 1
+
+-----------------------------------------------------------------------------
+
+-- * 4: Fibonacci numbers. Computes the n:th number in the Fib series
+fib 0 = 1
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)
+
+-----------------------------------------------------------------------------
+
+-- * 5: Factors
+smallestFactor :: Integer -> Integer
+smallestFactor 1 = 1
+smallestFactor n = allFactors n !! 1
+
+allFactors n = [x | x <- [1..n], n `mod` x == 0]
+
+-----------------------------------------------------------------------------
+
+-- * 6: Multiplying list elements
+
+-----------------------------------------------------------------------------
+
+-- * 7: Avoiding duplicates
+
+-----------------------------------------------------------------------------
+
+-- * 8: Testing
+
+-----------------------------------------------------------------------------
+
+-- * 9: Defining types
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
