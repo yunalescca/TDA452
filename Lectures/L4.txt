@@ -1,9 +1,11 @@
 Higher-Order Functions
 ======================
 
--- First class piece of data
+-- First class pieces of data
 
 -- A function which takes another function as a parameter
+
+-- Functions can be arguments of other functions, and they can also be the result
 
 -- Anonymous functions: lambda expressions. Instead of using local definitions of help functions we can use a lambda expression. 
 Building a function that we need from existing functions. 
@@ -43,6 +45,7 @@ Instead of writing function x = expression x, we can write function = expression
 -- Partial application: can build functions by taking a func of many args and giving it some but not all of its arguments
 
 
+-- Functions - Local Definitions - Lambda expressions - Sections - Partial Application
 
 
 
