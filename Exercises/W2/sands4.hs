@@ -85,7 +85,7 @@ takeWhile' p (x:xs)
 -- without giving it a name. It's a function, described by
 -- what the argument is. 
 
--- * Things that you take should not be the new line char
+-- * Things that you take should not be the newline char
 takeLine' cs = takeWhile' (\x -> x  /= '\n') cs 
 
 
@@ -218,7 +218,7 @@ string = "hello clouds hello sky"
 wordCount = putStr
           . unlines
           . map (\(w, n) -> w ++ ": " ++ show n)
-          . map (\ws -> (head ws, length ws))
+          . map (\ws -> (head ws, length ws)) 
           . group
           . sort 
           . words
