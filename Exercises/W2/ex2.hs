@@ -1,7 +1,8 @@
 -- * Exercise week 2
 
 import Test.QuickCheck
-import Data.List(sort, nub)
+import Data.List(sort, nub, elemIndex)
+import Data.Maybe(fromJust)
 
 -- * 1: maxi x y returns the maximum of x and y
 
@@ -91,29 +92,50 @@ removeDuplicates (x:xs)
 
 data Month = Jan | Feb | Mar | Apr | May | Jun |
              Jul | Aug | Sep | Oct | Nov | Dec
-    deriving (Show, Eq)
+    deriving (Show, Eq, Ord, Read, Bounded, Enum)
 
 
 data Date = Date {year::Integer, month::Month, day::Integer}
     deriving Show
 
-
+-- * Calculates how many days are in a month
 daysInMonth :: Month -> Integer -> Integer
 daysInMonth Feb year = if year `mod` 4 == 0 then 29 else 28
 daysInMonth month _ 
     | month `elem` [Jan, Mar, May, Jul, Aug, Oct, Dec] = 31 -- instead of writing month == Jan || month = Mar .. 
     | otherwise = 30
 
+-- * Checks whether a giving date is valid, that is if the day lies between
+-- 1 and the last day of the given month
 validDate :: Date -> Bool
-validDate (Date year month day) = day >= 1 && day <= (daysInMonth month year) 
+validDate (Date year month day) = 
+    day >= 1 && day <= (daysInMonth month year)
 
+-- * Calculates tomorrow's date
 tomorrow :: Date -> Date
-tomorrow (Date year month day) = undefined
+tomorrow (Date year month day)
+    | not (validDate (Date year month day)) = error "Not a valid date"
+
+    | day == daysInMonth month year && month == Dec 
+        = (Date (year + 1) Jan 1)
+
+    | day == daysInMonth month year
+        = (Date year (nextMonth month) 1)
+
+    | otherwise = (Date year month (day + 1))
 
 
-
-
-
+-- * Given a month, gives the following month
+nextMonth :: Month -> Month
+nextMonth month
+    | n < 0 || n > size - 1 = error "Index not in range"
+    | n == size - 1         = ((!!) listOfMonths 0)
+    | otherwise             = ((!!) listOfMonths (n + 1))
+        
+        where n    = fromJust $ elemIndex month listOfMonths
+              size = length listOfMonths
+              listOfMonths = [Jan, Feb, Mar, Apr, May, Jun, 
+                              Jul, Aug, Sep, Oct, Nov, Dec]
 
 
 
