@@ -1,0 +1,10 @@
+LECTURE 5 - IO
+==============
+
+-- How Haskell talks to the outside world
+
+-- Functions in Haskell are "real functions", because when you apply the same arg, it will always give you the same result. 
+
+-- Haskell functions are pure
+
+-- How do we keep pure and still have the opportunity to interact? 
