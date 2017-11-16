@@ -8,3 +8,17 @@ LECTURE 5 - IO
 -- Haskell functions are pure
 
 -- How do we keep pure and still have the opportunity to interact? 
+
+-- IO is the type of instructions / computations. 
+
+IO() is of the void result, that's why nothing will print on the screen. 
+
+-- You should think of IO as an abstract type representing instructions
+
+-- There's no way to run an instructions from an arbitrary expression. The only way instructions get run is if they are the top-level value that's returned by the Haskell computations. So if the result of the computation is something of the IO type, then the runtime system will actually run the instructions. When the IO reaches the top-level, then instructions get run by the system.
+
+-- There's no instruction to get the string out of IO String. 
+
+-- IO String is an instruction for producing a string. A string which is obtained by interacting with the operating system
+
+-- We can't pretend IO String == String
