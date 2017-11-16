@@ -1,5 +1,8 @@
 
 import Test.QuickCheck
+import Data.List
+import Data.Char
+import Data.Maybe(fromJust)
 
 -------------------------------------------------------------------------
 
@@ -38,14 +41,23 @@ allBlankSudoku = Sudoku $ replicate 9 $ replicate 9 Nothing
 -- puzzle
 isSudoku :: Sudoku -> Bool
 isSudoku sudoku = 
-  correctRowSize sudoku && correctColumnSize sudoku
+  correctRowSize sudoku && correctColumnSize sudoku && validElement sudoku
 
+-- | Checks is number of rows is correct
 correctRowSize :: Sudoku -> Bool
 correctRowSize sudoku = length (rows sudoku) == 9
 
+-- | Checks if number of columns is correct
 correctColumnSize :: Sudoku -> Bool
 correctColumnSize sudoku = 
   and $ map (\x -> (length x == 9)) (rows sudoku)
+
+-- | Checks if the sudoku only contains valid elements
+validElement :: Sudoku -> Bool
+validElement sudoku = and $ map (\x -> x `elem` ms) $ concat $ rows sudoku
+    where ms = [Nothing, Just 1, Just 2, Just 3, Just 4, Just 5,
+                Just 6, Just 7, Just 8, Just 9]
+
 
 
 -- * A3
@@ -53,7 +65,7 @@ correctColumnSize sudoku =
 -- | isFilled sud checks if sud is completely filled in,
 -- i.e. there are no blanks
 isFilled :: Sudoku -> Bool
-isFilled = undefined
+isFilled sudoku = and $ map (\x -> x /= Nothing) $ concat $ rows sudoku
 
 -------------------------------------------------------------------------
 
@@ -63,6 +75,12 @@ isFilled = undefined
 -- the screen
 printSudoku :: Sudoku -> IO ()
 printSudoku = undefined
+
+takeWhile' sudoku = 
+   takeWhile (/= ']') 
+   $ dropWhile (== '[') 
+   $ show 
+   $ rows sudoku
 
 -- * B2
 
@@ -89,3 +107,53 @@ instance Arbitrary Sudoku where
        return (Sudoku rows)
 
 -------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+example2 :: Sudoku
+example2 =
+    Sudoku
+      [ [j 3,j 6,j 1,j 2,j 7,j 1,j 5,j 8,j 4]
+      , [j 1,j 5,j 8,j 7,j 1,j 1,j 1,j 8,j 1]
+      , [j 2,j 1,j 9,j 2,j 1,j 4,j 7,j 1,j 1]
+      , [j 5,j 2,j 6,j 5,j 1,j 3,j 1,j 2,j 8]
+      , [j 4,j 3,j 4,j 5,j 1,j 2,j 1,j 1,j 9]
+      , [j 6,j 7,j 1,j 4,j 6,j 1,j 1,j 1,j 1]
+      , [j 7,j 6,j 5,j 3,j 1,j 8,j 9,j 1,j 1]
+      , [j 8,j 8,j 3,j 2,j 1,j 1,j 1,j 6,j 1]
+      , [j 9,j 9,j 7,j 6,j 9,j 1,j 1,j 4,j 3]
+      ]
+  where
+    n = Nothing
+    j = Just
