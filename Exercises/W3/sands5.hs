@@ -116,21 +116,22 @@ randomWord =
 
 
 gameLoop :: String -> String -> IO()
-gameLoop word guesses 
+gameLoop w g 
     | win       = showWin
     | lose      = showLose
-    | otherwise = 
-          do displayStatus
-             g <- getLine
-             gameLoop word (guesses ++ g)
+    | otherwise =
+         do displayStatus
+            guesses <- getLine
+            gameLoop w (g `union` take lives guesses)
 
-    where win      = and [c `elem` guesses| c <- word]
-          lose     = False
-          showWin  = putStr "Win!" ++ word
-          showLose = undefined
-          displayStatus = putStrLn "type stuff"
-
-
+    where win      = and [c `elem` g| c <- w] -- all (`elem` g) w
+          lose     = lives <= 0
+          lives    = guessLimit - length (g \\ w) 
+          showWin  = putStrLn $ "Win!" ++ w
+          showLose = putStrLn $ "Lose!" ++ w
+          displayStatus = 
+              do putStrLn [if c `elem` g then c else '_' | c <- w]
+                 putStrLn $ "Type your guesses (" ++ show lives ++ " remaining)"
 
 
 

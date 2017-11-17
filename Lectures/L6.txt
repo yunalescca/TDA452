@@ -1,0 +1,13 @@
+Test Data Generators
+====================
+
+-- QuickCheck can perform random testing with values of any type which is in class *** Arbitrary ***
+
+For any type a in Arbitrary there is a random value generator, Gen a. Gen a is a QuickCheck random generator.
+
+Gen is a Monad so things of type Gen a are another kind of "instruction" (as IO)
+
+-- The Arbitrary class contains an instance/a variable called arbitrary, which is of type Gen a
+
+arbitrary :: Gen a
+

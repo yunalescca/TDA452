@@ -22,3 +22,5 @@ IO() is of the void result, that's why nothing will print on the screen.
 -- IO String is an instruction for producing a string. A string which is obtained by interacting with the operating system
 
 -- We can't pretend IO String == String
+
+-- Monads are commands, and IO is the command for interacting with the operating system
