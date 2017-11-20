@@ -4,11 +4,12 @@ import Data.List
 import Data.Char
 import Data.Maybe(fromJust)
 
--------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 
 -- | Representation of sudoku puzzlese (allows some junk)
 data Sudoku = Sudoku { rows :: [[Maybe Int]] }
- deriving ( Show, Eq )
+ deriving (Show,Eq)
+
 
 -- | A sample sudoku puzzle
 example :: Sudoku
@@ -67,35 +68,50 @@ validElement sudoku = and $ map (\x -> x `elem` ms) $ concat $ rows sudoku
 isFilled :: Sudoku -> Bool
 isFilled sudoku = and $ map (\x -> x /= Nothing) $ concat $ rows sudoku
 
--------------------------------------------------------------------------
+-----------------------------------------------------------------------------
 
 -- * B1
 
 -- |b printSudoku sud prints a nice representation of the sudoku sud on
 -- the screen
 printSudoku :: Sudoku -> IO ()
-printSudoku = undefined
+printSudoku sudoku = 
+    putStrLn $
+    unlines [ [ if element == Nothing 
+        then '.' 
+        else intToDigit (fromJust element) | element <- row] 
+        | row <- rows sudoku]  
 
-takeWhile' sudoku = 
-   takeWhile (/= ']') 
-   $ dropWhile (== '[') 
-   $ show 
-   $ rows sudoku
 
 -- * B2
 
 -- | readSudoku file reads from the file, and either delivers it, or stops
 -- if the file did not contain a sudoku
 readSudoku :: FilePath -> IO Sudoku
-readSudoku = undefined
+readSudoku file = do sudoku <- readFile file
+                     let c = convertToSudoku sudoku
+                     if isSudoku c
+                         then return c
+                         else error "Not a sudoku!"
 
--------------------------------------------------------------------------
+
+convertToSudoku :: String -> Sudoku 
+convertToSudoku string = 
+    Sudoku [ [if s == '.' 
+        then Nothing 
+        else Just (digitToInt s) | s <- ss ]| ss <- lines string ]
+
+-----------------------------------------------------------------------------
 
 -- * C1
 
 -- | cell generates an arbitrary cell in a Sudoku
 cell :: Gen (Maybe Int)
-cell = undefined
+cell = frequency [(1, number),(9, nothing)]
+    where number  = do n <- choose (1,9)
+                       return $ Just n
+          nothing = do n <- elements [Nothing]
+                       return n 
 
 
 -- * C2
@@ -106,7 +122,9 @@ instance Arbitrary Sudoku where
     do rows <- vectorOf 9 (vectorOf 9 cell)
        return (Sudoku rows)
 
--------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+
 
 
 
