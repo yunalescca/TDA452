@@ -36,6 +36,7 @@ nats =
 -- choose
 -- oneof : chooses one random generator in a list of generators
 -- elements : sample' $ [1,2,3] == [2,2,3,1,2,3,2,1,2]
+-- produces a list of random generators
 -- frequency :: [(Int, Gen a)] -> Gen a : Int is the frequency
 
 -----------------------------------------------------------------------------
@@ -51,6 +52,7 @@ instance Arbitrary Suit where
 
 nonProp_suit s = s /= Hearts
 
+-- Generates one of the given values
 rSuit :: Gen Suit
 rSuit = elements [Spades, Hearts, Diamonds, Clubs] 
 
@@ -64,15 +66,27 @@ data Rank = Numeric Int | Jack | Queen | King | Ace
 instance Arbitrary Rank where
     arbitrary = rRank
 
+-- Since there are 9 numeric cards and 4 royal,
+-- the ratio between them should be 9:4
+rRank :: Gen Rank
+rRank = frequency [(4, rRoyal), (9, rNumeric)]
+
+-- Same as rSuit
+rRoyal :: Gen Rank
 rRoyal = elements [Jack, Queen, King, Ace]
 
+-- Instead of elements [2..10]
+-- Generates an integer between 2 and 10 (inclusive)
+-- choose :: (a,a) -> Gen a
+rNumeric :: Gen Rank
 rNumeric  = 
-    do n <- choose (2,10)
+    do n <- choose (2,10) -- do knows to return a Gen Rank
        return $ Numeric n
+
 
 rNumeric' = fmap Numeric $ choose (2,10)
 
-rRank = frequency [(4, rRoyal), (9, rNumeric)]
+
 
 prop_Rank (Numeric n) = n > 1 && n <= 10
 prop_Rank _           = True
@@ -86,7 +100,7 @@ data Card = Card Rank Suit
 
 instance Arbitrary Card where
     arbitrary =
-        do s <- arbitrary
+        do s <- arbitrary -- knows to pick an arbitrary suit
            r <- arbitrary
            return $ Card s r
 
@@ -149,7 +163,7 @@ prop_insert'' x (OList xs) =
     $ insert x xs
     where types = x :: Integer
 
-
+-----------------------------------------------------------------------------
 
 
 
