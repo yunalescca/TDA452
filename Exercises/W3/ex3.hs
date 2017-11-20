@@ -79,7 +79,16 @@ prop_permutation xs = isPermutation xs (reverse xs)
 
 -- 2 * Avoiding Duplicates
 
--- Done last week
+duplicates :: Eq a => [a] -> Bool
+duplicates [] = False
+duplicates (x:xs) = x `elem` xs || duplicates xs
+
+removeDuplicates :: Eq a => [a] -> [a]
+removeDuplicates []  = []
+removeDuplicates [x] = [x]
+removeDuplicates (x:xs) 
+    | x `elem` xs = removeDuplicates xs
+    | otherwise   = x : removeDuplicates xs
 
 -----------------------------------------------------------------------------
 
@@ -145,19 +154,52 @@ allOccurIn xs ys = and [occursIn x ys| x <- xs]
 sameElements :: Eq a => [a] -> [a] -> Bool
 sameElements xs ys = allOccurIn xs ys && allOccurIn ys xs
 
+-- sameElements xs ys = isPermutation xs ys
 
 -- The number of occurrences of x in xs
 numOfOccurrences :: Eq a =>  a -> [a] -> Int
 numOfOccurrences x xs = sum [1 | y <- xs, x == y]
 
+
+
+-- Takes a list and returns a lit of pairs with the number of 
+-- occurrences of each element
+bag :: Eq a => [a] -> [(a, Int)]
+bag xs = removeDuplicates [(x, numOfOccurrences x xs) | x <- xs]
+
 -----------------------------------------------------------------------------
 
--- 7 * 
+-- 7 * Elements and positions
 
+-- Prints the pair of each element in the list, and on which
+-- positions the element occurs on
+positions :: Eq a => [a] -> [(a, Int)]
+positions xs = zip xs [0..length xs - 1]
+
+-- Checks the first position that x occurs on in xs
+firstPosition :: Eq a => a -> [a] -> Int
+firstPosition x xs = head [snd y | y <- positions xs, fst y == x]
+
+-- Removes the first occurrence of x in xs
+remove1st :: Eq a => a -> [a] -> [a]
+remove1st x (y:ys)
+    | x == y = ys
+    | not (x `elem` (y:ys)) = (y:ys)
+    | otherwise = y : remove1st x ys 
+
+
+remove :: Eq a => Int -> a -> [a] -> [a]
+remove 0 _ xs = xs
+remove n x xs = remove (n - 1) x (remove1st x xs)
 -----------------------------------------------------------------------------
 
--- 8 *
+-- 8 * More list comprehensions
 
+pairs :: [a] -> [b] -> [(a,b)]
+pairs xs ys = [(x,y) | x <- xs, y <- ys]
+
+-- Pythagora's triad: a^2 + b^2 = c^2, s.t a <= b <= c <= 100
+pythagora = [(a,b,c) | c <- [1..100], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2 ]
 -----------------------------------------------------------------------------
 
 
