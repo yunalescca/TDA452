@@ -51,7 +51,12 @@ correctRowSize sudoku = length (rows sudoku) == 9
 -- | Checks if number of columns is correct
 correctColumnSize :: Sudoku -> Bool
 correctColumnSize sudoku = 
-  and $ map (\x -> (length x == 9)) (rows sudoku)
+    and $ map (\x -> (length x == 9)) (rows sudoku)
+
+
+correctColumnSize' :: Sudoku -> Bool
+correctColumnSize' sudoku = 
+    length (transpose (rows sudoku)) == 9
 
 -- | Checks if the sudoku only contains valid elements
 validElement :: Sudoku -> Bool
@@ -122,6 +127,42 @@ instance Arbitrary Sudoku where
     do rows <- vectorOf 9 (vectorOf 9 cell)
        return (Sudoku rows)
 
+
+-- * C3
+prop_Sudoku :: Sudoku -> Bool
+prop_Sudoku sudoku = isSudoku sudoku
+
+-----------------------------------------------------------------------------
+
+-- * D1
+
+type Block = [Maybe Int]
+
+isOkayBlock :: Block -> Bool
+isOkayBlock [] = True
+isOkayBlock (b:bs)
+    | b /= Nothing && b `elem` bs = False
+    | otherwise = isOkayBlock bs
+
+
+-- * D2
+
+blocks :: Sudoku -> [Block]
+blocks sudoku = rows sudoku ++ transpose (rows sudoku) 
+
+
+-- buildBlocks :: Int -> Int -> Int -> Sudoku -> [Block]
+buildBlocks sudoku = 
+    [concat $ map (take 3) (take 3 rs)] ++ 
+    [concat $ map (take 3) (map (drop 3) (take 3 rs))] ++ 
+    [concat $ map (drop 6) (take 3 rs)]
+    where rs = rows sudoku
+
+
+-- * D3
+
+isOkay :: Sudoku -> Bool
+isOkay = undefined
 -----------------------------------------------------------------------------
 
 
@@ -153,25 +194,3 @@ instance Arbitrary Sudoku where
 
 
 
-
-
-
-
-
-
-example2 :: Sudoku
-example2 =
-    Sudoku
-      [ [j 3,j 6,j 1,j 2,j 7,j 1,j 5,j 8,j 4]
-      , [j 1,j 5,j 8,j 7,j 1,j 1,j 1,j 8,j 1]
-      , [j 2,j 1,j 9,j 2,j 1,j 4,j 7,j 1,j 1]
-      , [j 5,j 2,j 6,j 5,j 1,j 3,j 1,j 2,j 8]
-      , [j 4,j 3,j 4,j 5,j 1,j 2,j 1,j 1,j 9]
-      , [j 6,j 7,j 1,j 4,j 6,j 1,j 1,j 1,j 1]
-      , [j 7,j 6,j 5,j 3,j 1,j 8,j 9,j 1,j 1]
-      , [j 8,j 8,j 3,j 2,j 1,j 1,j 1,j 6,j 1]
-      , [j 9,j 9,j 7,j 6,j 9,j 1,j 1,j 4,j 3]
-      ]
-  where
-    n = Nothing
-    j = Just
