@@ -180,6 +180,7 @@ prop_buildBlocks sudoku =
 -- | Checks so that no Block contains duplicate elements
 isOkay :: Sudoku -> Bool
 isOkay sudoku = and [isOkayBlock b | b <- (blocks sudoku)]
+
 -----------------------------------------------------------------------------
 
 
