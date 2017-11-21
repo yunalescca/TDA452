@@ -36,6 +36,7 @@ allBlankSudoku :: Sudoku
 allBlankSudoku = Sudoku $ replicate 9 $ replicate 9 Nothing
 
 
+
 -- * A2
 
 -- | isSudoku sud checks if sud is really a valid representation of a sudoku
@@ -46,21 +47,17 @@ isSudoku sudoku =
 
 -- | Checks is number of rows is correct
 correctRowSize :: Sudoku -> Bool
-correctRowSize sudoku = length (rows sudoku) == 9
+correctRowSize (Sudoku rs) = length rs == 9
 
 -- | Checks if number of columns is correct
 correctColumnSize :: Sudoku -> Bool
-correctColumnSize sudoku = 
-    and $ map (\x -> (length x == 9)) (rows sudoku)
+correctColumnSize (Sudoku rs) = length (transpose rs) == 9
 
-
-correctColumnSize' :: Sudoku -> Bool
-correctColumnSize' sudoku = 
-    length (transpose (rows sudoku)) == 9
 
 -- | Checks if the sudoku only contains valid elements
 validElement :: Sudoku -> Bool
-validElement sudoku = and $ map (\x -> x `elem` ms) $ concat $ rows sudoku
+validElement (Sudoku rs) = and $ map (\x -> x `elem` ms) $ concat rs
+    
     where ms = [Nothing, Just 1, Just 2, Just 3, Just 4, Just 5,
                 Just 6, Just 7, Just 8, Just 9]
 
@@ -71,7 +68,7 @@ validElement sudoku = and $ map (\x -> x `elem` ms) $ concat $ rows sudoku
 -- | isFilled sud checks if sud is completely filled in,
 -- i.e. there are no blanks
 isFilled :: Sudoku -> Bool
-isFilled sudoku = and $ map (\x -> x /= Nothing) $ concat $ rows sudoku
+isFilled (Sudoku rs) = and $ map (\x -> x /= Nothing) $ concat rs
 
 -----------------------------------------------------------------------------
 
@@ -80,12 +77,12 @@ isFilled sudoku = and $ map (\x -> x /= Nothing) $ concat $ rows sudoku
 -- |b printSudoku sud prints a nice representation of the sudoku sud on
 -- the screen
 printSudoku :: Sudoku -> IO ()
-printSudoku sudoku = 
+printSudoku (Sudoku rs) = 
     putStrLn $
     unlines [ [ if element == Nothing 
         then '.' 
-        else intToDigit (fromJust element) | element <- row] 
-        | row <- rows sudoku]  
+        else intToDigit (fromJust element) | element <- r] 
+        | r <- rs]  
 
 
 -- * B2
@@ -99,7 +96,7 @@ readSudoku file = do sudoku <- readFile file
                          then return c
                          else error "Not a sudoku!"
 
-
+-- | converts a string to a Sudoku
 convertToSudoku :: String -> Sudoku 
 convertToSudoku string = 
     Sudoku [ [if s == '.' 
@@ -123,12 +120,12 @@ cell = frequency [(1, number),(9, nothing)]
 
 -- | an instance for generating Arbitrary Sudokus
 instance Arbitrary Sudoku where
-  arbitrary =
-    do rows <- vectorOf 9 (vectorOf 9 cell)
-       return (Sudoku rows)
+    arbitrary = do rows <- vectorOf 9 (vectorOf 9 cell)
+                   return (Sudoku rows)
 
 
 -- * C3
+-- | Property for checking that all sudokus are valid
 prop_Sudoku :: Sudoku -> Bool
 prop_Sudoku sudoku = isSudoku sudoku
 
@@ -136,8 +133,10 @@ prop_Sudoku sudoku = isSudoku sudoku
 
 -- * D1
 
+-- | A Block is either 9 rows, 9 columns or 9 3x3 blocks
 type Block = [Maybe Int]
 
+-- | Checks so that a Block doesn't contain duplicate elements
 isOkayBlock :: Block -> Bool
 isOkayBlock [] = True
 isOkayBlock (b:bs)
@@ -147,22 +146,40 @@ isOkayBlock (b:bs)
 
 -- * D2
 
+-- | Builds a list of all the different Blocks
 blocks :: Sudoku -> [Block]
-blocks sudoku = rows sudoku ++ transpose (rows sudoku) 
+blocks (Sudoku rs) = rs ++ transpose rs ++ build3x3 rs 
 
 
--- buildBlocks :: Int -> Int -> Int -> Sudoku -> [Block]
-buildBlocks sudoku = 
-    [concat $ map (take 3) (take 3 rs)] ++ 
-    [concat $ map (take 3) (map (drop 3) (take 3 rs))] ++ 
-    [concat $ map (drop 6) (take 3 rs)]
+-- | Builds the 3x3 blocks 
+build3x3 :: [[Maybe Int]] -> [Block]
+build3x3 [] = []
+build3x3 rs = 
+    [concat $ map (take 3) top3] ++ 
+    [concat $ map (take 3) (map (drop 3) top3)] ++ 
+    [concat $ map (drop 6) top3] ++
+    build3x3 (drop 3 rs)
+
+    where top3 = take 3 rs
+
+
+-- | Checks the correct length of all blocks
+prop_buildBlocks :: Sudoku -> Bool
+prop_buildBlocks sudoku = 
+    length (blocks sudoku) == 27 &&
+    length rs              == 9  &&
+    length (transpose rs)  == 9  &&
+    length (build3x3 rs)   == 9 
+     
     where rs = rows sudoku
+
 
 
 -- * D3
 
+-- | Checks so that no Block contains duplicate elements
 isOkay :: Sudoku -> Bool
-isOkay = undefined
+isOkay sudoku = and [isOkayBlock b | b <- (blocks sudoku)]
 -----------------------------------------------------------------------------
 
 
