@@ -4,3 +4,5 @@ RECURSIVE DATA TYPES
 -- Most of the RCD that we define in Haskell are tree-shaped, not list-shaped (as with Hand)
 
 -- The Maybe datatype represents that an 'a' (Maybe a) is either nothing, or it is just an a. We use maybe because we don't have the same control flow as in Java, and thus we cannot handla exceptions. Hence, Maybe is introduced to represent that a variable can be nothing (like Null ub Java)
+
+-- Often when we have recursive data types we need functions that are recursive too!

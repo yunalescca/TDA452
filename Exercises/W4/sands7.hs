@@ -47,10 +47,16 @@ eval t e = eval' e
           eval' (Add e1 e2) = eval' e1 + eval' e2 
           eval' (Var x)     = fromJust $ lookup x t -- lookup returns a Maybe
 
+
+
+
 look k [] = error $ "No value for " ++ k
 look k ((k', v): t) 
      | k == k' = v
      | otherwise = look k t
+
+
+
 
 -- show
 showExpr :: Expr -> String
@@ -74,12 +80,16 @@ level = fromInteger range
 -- IO:s and Gen:s
 
 rExpr :: Int -> Gen Expr
-rExpr s = frequency [(1,rNum), (s,rBin s)]
-    where rNum = elements $ map Num [-range..range]
-          rBin s = do op <- elements [Mul, Add]
-                      e1 <- rExpr s'
-                      e2 <- rExpr s'
-                      return $ op e1 e2
+rExpr s = frequency [(1,rNum), (1, rVar), (s,rOp)]
+    where rNum = do n <- arbitrary
+                    return $ Num n
+                  
+          rOp = do op <- elements [Mul, Add]
+                   e1 <- rExpr s'
+                   e2 <- rExpr s'
+                   return $ op e1 e2
+
+          rVar = elements $ map Var["x", "y", "z"] -- expected expressions, so add map Var
           s' = (s `div` 2)
 
 
@@ -113,16 +123,52 @@ vars (Mul e1 e2) = vars e1 ++ vars e2
 
 -----------------------------------------------------------------------------
 
+-- | Replace stupid Add with simple add
+derive :: String -> Expr -> Expr
+derive x (Add e1 e2)      = add (derive x e1) (derive x e2)
+derive x (Mul e1 e2)      = add (mul (derive x e1) e2)
+                                (mul (derive x e2) e1)
+derive x (Var y) | x == y = (Num 1)
+
+derive _ _                = (Num 0)
 
 
+add :: Expr -> Expr -> Expr
+add (Num n) (Num m) = Num (n + m)
+add (Num 0) e       = e
+add e       (Num 0) = e
+add e1      e2      = Add e1 e2
 
+mul :: Expr -> Expr -> Expr
+mul (Num n) (Num m) = Num (n * m)
+mul (Num 0) e       = Num 0
+mul e       (Num 0) = Num 0
+mul (Num 1) e       = e
+mul e       (Num 1) = e
+mul e1      e2      = Mul e1 e2
 
+-----------------------------------------------------------------------------
 
+-- | Generate random tables 
 
+-- | The exact same as Table (defined above) but defined
+-- with a new name (Env = Environment)
+-- newtype only has one constructor
+-- An Environment wrapping a Table
+-- Constructor Environment for Table
+newtype Env = Env Table
+    deriving Show
 
-
-
-
+-- | arbitrary :: Gen Env
+-- do wants to return a monad, and a Gen is a monad
+-- So we can't just return [...], because that's not of the right type
+-- We have to put the constructor Env before, and the returntype will be
+-- Gen Env
+-- Expected type: Gen Env
+-- Actual type: Gen [([Char], b0)]
+instance Arbitrary Env where
+    arbitrary = do (l,m,n) <- arbitrary
+                   return $ Env [("x", l),("y", m),("z", n)]
 
 
 
