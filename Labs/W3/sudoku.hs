@@ -183,11 +183,63 @@ isOkay sudoku = and [isOkayBlock b | b <- (blocks sudoku)]
 
 -----------------------------------------------------------------------------
 
+-- * E1
+
+type Pos = (Int, Int)
+
+
+blanks :: Sudoku -> [Pos]
+blanks (Sudoku rs) = 
+    [(x,y) | x <- [0..8], y <- [0..8], (rs !! x) !! y == Nothing]
+
+
+prop_blanks :: Sudoku -> Bool
+prop_blanks (Sudoku rs) = and [(rs !! (fst ts)) !! (snd ts) == Nothing 
+                                  | ts <- blanks (Sudoku rs)]
 
 
 
+-- * E2
+(!!=) :: [a] -> (Int, a) -> [a]
+(!!=) [] _ = []
+(!!=) (x:xs) (pos, e)
+    | pos == 0  = e : xs
+    | otherwise = x : (!!=) xs (pos - 1, e)
 
 
+prop_insertlength xs (pos, e) = 
+    pos >= 0 && pos < length xs ==> length xs == length (xs !!= (pos, e))
+    where types = e :: Integer
+
+
+prop_insertelem xs (pos, e) = 
+    pos >= 0 && pos < length xs ==> e `elem` (xs !!= (pos, e))
+    where types = e :: Integer
+
+
+
+-- * E3
+update :: Sudoku -> Pos -> [Maybe Int] -> Sudoku 
+update = undefined
+
+
+
+-- * E4
+
+-----------------------------------------------------------------------------
+
+-- * F1
+
+
+-- * F2
+
+
+-- * F3
+
+
+-- * F4
+
+-----------------------------------------------------------------------------
 
 
 
