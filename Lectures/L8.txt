@@ -1,0 +1,71 @@
+PARSING EXPRESSIONS
+===================
+
+-- * Turning Strings into things
+
+-- * Turning unstructured Data into structured Data
+
+-- * Exposes FP philosophies
+
+-- * Expressions, s.a 5 * 2 + 12, can be modelled as a datatype
+
+Data Expr = ...
+
+-- * Built-in show-function and read-function will show and read literally what the datatype says.
+So if Data Expr = Num Int | Add Expr Expr
+then if show ex, this will print as "Add (Num 4) (Num 5)", rather than just "4+5"
+
+Likewise, if we want the read-function, we have to type in literally "Add (Num 4) (Num 5)", hence we like to write our own show and read functions
+
+
+-- * PARSING: 
+	- Transforming a "flat" string into something with a richer structure is called parsing
+		- expressions
+		- programming languages
+		- natural languages (Swedish, English,...)
+	- Very common problem in computer science
+		- Many different solutions
+
+
+-- * Parsing numbers, three cases: 
+	1) The string is a number ("23")
+	2) The string is not a number at all ("apa")
+	3) The string starts with a number ("23+12")
+
+
+-- * We want to refactor our parser from part 1 to cover more cases. We need to refactor and build a toolbox of things which were useful to build any parser. 
+
+
+ -- * A parser checks that some input is correct, according to the grammar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
