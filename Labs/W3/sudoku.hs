@@ -187,7 +187,7 @@ isOkay sudoku = and [isOkayBlock b | b <- (blocks sudoku)]
 
 type Pos = (Int, Int)
 
-
+-- | Returns all the positions which are blank in a sudoku
 blanks :: Sudoku -> [Pos]
 blanks (Sudoku rs) = 
     [(x,y) | x <- [0..8], y <- [0..8], (rs !! x) !! y == Nothing]
@@ -200,6 +200,7 @@ prop_blanks (Sudoku rs) = and [(rs !! (fst ts)) !! (snd ts) == Nothing
 
 
 -- * E2
+-- | Inserts an element into a list
 (!!=) :: [a] -> (Int, a) -> [a]
 (!!=) [] _ = []
 (!!=) (x:xs) (pos, e)
@@ -219,12 +220,48 @@ prop_insertelem xs (pos, e) =
 
 
 -- * E3
-update :: Sudoku -> Pos -> [Maybe Int] -> Sudoku 
-update = undefined
+-- | Updates a sudoku with a value in a certain position
+update :: Sudoku -> Pos -> Maybe Int -> Sudoku 
+update (Sudoku (r:rs)) (0,y) value = Sudoku (r !!= (y, value) : rs)
+update (Sudoku (r:rs)) (x,y) value =
+    Sudoku(r : rows (update (Sudoku rs) (x-1, y) value))
+
+
+-- | Creates a new datatype so QuickCheck won't give up on test.
+newtype NewPos = P Pos
+    deriving Show
+
+-- | A NewPos can only be between (0,0) and (8,8)
+instance Arbitrary NewPos where
+    arbitrary = do x <- choose (0,8)
+                   y <- choose (0,8)
+                   return $ P (x,y)
+
+prop_update sudoku (P (x,y)) value = 
+    ((rows (update sudoku (x,y) value)) !! x) !! y == value
 
 
 
 -- * E4
+-- | Given a sudoku and position, returns all the numbers that could
+-- be legally written in that cell
+candidates :: Sudoku -> Pos -> [Int]
+candidates (Sudoku rs) (x,y) = 
+   map (fromJust) (((result \\ (rs !! x)) 
+                            \\ ((transpose rs) !! y))
+                            \\ (pickBlock rs (x,y)))
+   where 
+      result = [Just 1, Just 2, Just 3, Just 4, 
+                Just 5, Just 6, Just 7, Just 8, Just 9]
+    
+
+pickBlock rs (x,y)
+    | x < 3 && y < 3 = (build3x3 rs) !! 0
+    | x < 3 && y < 6 = (build3x3 rs) !! 1
+    | x < 3 && y < 9 = (build3x3 rs) !! 2
+    | otherwise = pickBlock (drop 3 rs) (x-3, y)
+    
+
 
 -----------------------------------------------------------------------------
 
