@@ -1,0 +1,189 @@
+MONADS
+======
+
+
+-- So far we've seen how to write parser, to convert strings into Maybes
+
+
+-- Consume part of the input string to pass an object if successful, and what you return is what you parsed and the rest of the input string
+
+
+-- ReadExpr.hs was the "brute force" parser
+
+We refactored this into two parts 
+	- RefactoredParser
+		- Few basic building blocks (datatype dependent)
+	- RefactoredReadExpr 
+		- A few lines of code
+
+
+
+-- The Parser Monad
+	- Using these building blocks we can make Parser an instance of the class Monad
+		- We get a language of "Parsing Instructions" (instructions for parsing)
+		- Another way to write Parsers using do notation
+
+
+-- We have seen two monads
+	- IO A -- instructions to build a value of type A by interacting with the operating system. Run by the ghc runtime. 
+	- Something of type IO A, is the type of instructions, that when they interact with the system may be able to produce a value of type A. 
+	- Gen A -- instructions to create a random value of type A. Run by QuickCheck
+
+------------------------------------------------------------
+
+-- So what is a Monad?
+	- To be an instance of class Monad (it's a class definition), you need to operations: >>= and return
+	- Just like the Eq class, if you want to be in the Eq class, you need to have an equality operation
+	- Num class: addition, ...
+	- Minimum requirement to be a member of another class
+
+-- When defining a class: class Monad m where ... 
+and it will a) contain operation signatures, for instance
+(>>=) :: m a -> (a -> m b) -> m b (just the signature)
+^ 'bind'
+
+^ similar shape to our (>*>)
+
+
+and it might b) contain the signature AND the definition
+(>>) :: m a -> m b -> m b
+x >> y = x >>= \_ -> y  (default implementation)
+
+------------------------------------------------------------
+
+-- The Truth about Do
+	- Do syntax is just a shorthand (syntactic sugar): 
+	- 
+
+do act 1
+   act 2 
+
+== 
+
+act1 >> act2   
+
+==
+
+act1 >>= \_ -> act2    (do act1, take the value and parse it to this function (\_ -> act2), which doesn't care what the value is, and then does the second action act2)
+
+--  
+
+do v <- act1     
+   act2
+
+==
+
+act1 >>= \v -> act2    (do act1, bind it to v and use it in act2)
+
+-----------------------------------------------------------
+
+-- Recursively, this is defined as
+
+do act 1
+   ...
+   actn
+
+== 
+
+act 1 >> do ...
+            actn
+
+
+-------------
+
+
+do v <- act1
+   ...
+   act n
+
+===
+
+act1 >>= \v -> do ...
+                 actn
+
+
+do act n == actn
+
+
+-----------------------------------------------------------
+
+-- We can use higher-order functions to build parser from other more basic Parsers
+
+-- Parsers can be viewed as an instance of Monad
+
+-- We can build our own Monads
+	- A lot of "plumbing" is nicely hidden away
+	- The implementation of the Monad is not visible and can thus be changed or extended 
+
+
+-----------------------------------------------------------
+
+THREE MONADS
+
+-- IO t
+    - instructions for interacting with operating system
+    - run by ghc runtime system produce value of type t
+
+-- Gen t
+	- instructions for building random values
+	- run by quickCheck to generate random values of type t
+
+-- Parser t
+	- instructions for parsing
+	- run by parse to parse a stirng and Maybe produce a value of type t
+
+
+-----------------------------------------------------------
+
+
+-- Maybe is a very simple Monad
+
+instance Monad Maybe where
+
+Just x  >>= k = k x -- if we just have an x, then we can  						 feed that to the function k by just 						taking the x out of the just and 						   applying k to that value
+Nothing >>= _ = Nothing
+
+return        = Just
+fail s        = Nothing
+
+
+-----------------------------------------------------------
+
+-- Lists are also in the Monad class
+
+-- representation of non-deterministic computation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
