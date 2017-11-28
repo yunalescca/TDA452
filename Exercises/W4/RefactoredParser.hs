@@ -12,6 +12,8 @@ parsers. Combinators = building parser from simpler parsers
 
 -}
 
+
+-- Parsing library
 module RefactoredParser
  ( Parser -- exports the type name but not the constructors
   ,parse,
@@ -22,6 +24,15 @@ module RefactoredParser
 
 where
 import Data.Char
+import Control.Applicative
+import Control.Monad(liftM, ap)
+
+{-}
+instance Monad RefactoredParser where
+    (>>=)  = (>*>) 
+    return = success
+-}
+
 {----------------------
 Week 4B part II
 
@@ -35,6 +46,7 @@ Aim: reusable Parser combinators including
 -- was before, except now it is hidden inside a constructor P
 -- When we only have one parameter, then by convention we call it
 -- a newtype
+-- Used by the function parse 
 newtype Parser a = P (String -> Maybe (a,String))
 
 
@@ -99,6 +111,7 @@ p +++ q = P $ \s ->
 -- p >*> f    parse using p to produce a, then parse using f a
 -- Takes in a a parser and a functionw which returns a parser
 infixl 1 >*>
+-- Parses an a, than takes the result and feeds into a function
 (>*>) :: Parser a -> (a -> Parser b) -> Parser b
 p >*> f = P $ \s -> 
             case parse p s of 
@@ -109,12 +122,15 @@ p >*> f = P $ \s ->
 -----------------------------------------------------------------------------
 
 -- sat p parse a single character satisfying property p
+-- sat = satisfy!
 sat :: (Char -> Bool) -> Parser Char
 sat p = item >*> \c -> if p c then success c else failure
 
+-- if c is the first symbol in string
 char :: Char -> Parser Char
 char c = sat (==c)
 
+-- This is a parser, we need to use the parse function to use it
 digit :: Parser Char
 digit  = sat isDigit
 
@@ -189,12 +205,33 @@ digitList = chain digit (char ',')
 
 
 
+-- digit >*> \d -> sat (>d)
+{- Parse a digit, and then parse a second digit which is 
+bigger than the first digit. We are gonna parse two digits
+but the second digit has to be bigger than the first digit.
+
+Parse a *digit*, and then feeding the result to the following
+function *\d* which takes a digit as its argument and then asks
+the question, can we build something which satisfies the
+property ">d"?
+
+Two consecutive digits -}
 
 
+-----------------------------------------------------------------------------
 
+instance Functor Parser where
+    fmap f = fmap f
 
+instance Applicative Parser where
+    pure  = pure
+    (<*>) = (<*>)
 
+instance Monad Parser where
+    (>>=)  = (>*>)
+    return = success
 
+-----------------------------------------------------------------------------
 
 
 

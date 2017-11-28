@@ -17,6 +17,16 @@ u = undefined
 integer :: Parser Integer -- parse a natural number
 integer = oneOrMore digit >*> success . read
 
+integer' = nat +++ pmap negate (char '-' >-> nat)
+    where nat = oneOrMore digit >*> success . read
+
+
+integer'' = nat +++ do char '-'
+                       n <- nat
+                       return $ negate n
+    where nat = do ds <- oneOrMore digit 
+                   return $ read ds
+
 
 num :: Parser Expr
 num = pmap Num integer
@@ -25,6 +35,12 @@ num = pmap Num integer
 expr = foldr1 Add `pmap` chain term (char '+')
 
 term = foldr1 Mul `pmap` chain factor (char '*')
+
+term' =
+    do es <- chain factor (char '*')
+       return $ foldr1 Mul es
+
+
 
 factor = char '(' >-> expr <-< char ')'
            +++ num
