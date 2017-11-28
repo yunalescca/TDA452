@@ -1,15 +1,15 @@
+module Sudoku where
 
 import Test.QuickCheck
 import Data.List
 import Data.Char
-import Data.Maybe(fromJust)
+import Data.Maybe(fromJust, listToMaybe)
 
 -----------------------------------------------------------------------------
 
 -- | Representation of sudoku puzzlese (allows some junk)
 data Sudoku = Sudoku { rows :: [[Maybe Int]] }
- deriving (Show,Eq)
-
+ deriving (Show,Eq)  
 
 -- | A sample sudoku puzzle
 example :: Sudoku
@@ -127,7 +127,7 @@ instance Arbitrary Sudoku where
 -- * C3
 -- | Property for checking that all sudokus are valid
 prop_Sudoku :: Sudoku -> Bool
-prop_Sudoku sudoku = isSudoku sudoku
+prop_Sudoku = isSudoku 
 
 -----------------------------------------------------------------------------
 
@@ -259,7 +259,7 @@ pickBlock rs (x,y)
     | x < 3 && y < 3 = (build3x3 rs) !! 0
     | x < 3 && y < 6 = (build3x3 rs) !! 1
     | x < 3 && y < 9 = (build3x3 rs) !! 2
-    | otherwise = pickBlock (drop 3 rs) (x-3, y)
+    | otherwise = pickBlock (drop 3 rs) (x - 3, y)
     
 
 
@@ -267,14 +267,51 @@ pickBlock rs (x,y)
 
 -- * F1
 
+solve :: Sudoku -> Maybe Sudoku
+solve sudoku 
+    | not (isSudoku sudoku || isOkay sudoku) = Nothing
+    | otherwise = solve' sudoku
+
+
+solve' :: Sudoku -> Maybe Sudoku
+solve' sudoku
+    | blanks sudoku == [] = Just sudoku
+    | otherwise = case solve updatedSud of
+                      Nothing -> Nothing
+                      _       -> solve' sudoku -- sud
+
+
+    where emptyCell  = head (blanks sudoku) -- choose the first blank cell
+          cands      = candidates sudoku emptyCell -- find all candidates
+
+          updatedSud = undefined {-case solve (update sudoku emptyCell (possibleCandidate cands)) of
+                                       Nothing -> update sudoku emptyCell (possibleCandidate (drop 1 cands))
+                                       _       -> (update sudoku emptyCell (possibleCandidate cands))-}
+
+
+helper :: Sudoku -> Pos -> [Int] -> Maybe Sudoku
+helper sudoku p cs = case c of
+                         Nothing -> Nothing
+                         Just x  -> Just $ update sudoku p (Just x)
+    where c = possibleCandidate cs
+
+
+
+possibleCandidate :: [Int] -> Maybe Int
+possibleCandidate [] = Nothing
+possibleCandidate (x:xs) = Just x
+
 
 -- * F2
+
 
 
 -- * F3
 
 
+
 -- * F4
+
 
 -----------------------------------------------------------------------------
 
