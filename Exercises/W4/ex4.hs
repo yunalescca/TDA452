@@ -70,6 +70,7 @@ repeats test op =
 
 -----------------------------------------------------------------------------
 
+
 -- 1 * Properties of the Look Function
 
 lookup' :: Eq a => a -> [(a,b)] -> Maybe b
@@ -130,13 +131,41 @@ prop_lookup x xys =
 prop_lookup' x xys = 
     prop_lookJust' x xys && prop_lookNothing' x xys
 
+
 -----------------------------------------------------------------------------
 
 -- 2 * 
 
+-- The user should think of a number, and let the computer guess the right number
+game :: IO ()
+game = 
+    do putStrLn "Think of a number between 1 and 100"
+       let lo = read "1" :: Int
+       let hi = read "100" :: Int
+       guessing lo hi
+       putStrLn "Great, I won!"
+
+
+-- Helper function to calculate the right answer
+-- not finished
+guessing :: Int -> Int -> IO ()
+guessing lo hi =
+    do putStr "Is it "
+       let guess = div (lo + hi) 2 -- the computer's guess
+       print guess
+       ans <- getLine
+       case ans of
+           "yes" -> return ()
+           "higher" -> guessing guess hi
+           "lower"  -> guessing lo guess
+           _        -> guessing lo hi
+
+
 -----------------------------------------------------------------------------
 
--- 3 * 
+-- 3 * The Number Guessing Game
+
+
 
 -----------------------------------------------------------------------------
 
@@ -144,7 +173,7 @@ prop_lookup' x xys =
 
 -----------------------------------------------------------------------------
 
--- 5 * 
+-- 5 * Generating Lists
 
 -----------------------------------------------------------------------------
 
