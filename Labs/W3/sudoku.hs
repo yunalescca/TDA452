@@ -109,7 +109,7 @@ convertToSudoku string =
 
 -- | cell generates an arbitrary cell in a Sudoku
 cell :: Gen (Maybe Int)
-cell = frequency [(1, number),(9, nothing)]
+cell = frequency [(1, number),(1, nothing)]
     where number  = do n <- choose (1,9)
                        return $ Just n
           nothing = do n <- elements [Nothing]
@@ -193,6 +193,7 @@ blanks (Sudoku rs) =
     [(x,y) | x <- [0..8], y <- [0..8], (rs !! x) !! y == Nothing]
 
 
+-- | Checks so that a blank cell is actually blank
 prop_blanks :: Sudoku -> Bool
 prop_blanks (Sudoku rs) = and [(rs !! (fst ts)) !! (snd ts) == Nothing 
                                   | ts <- blanks (Sudoku rs)]
@@ -208,11 +209,13 @@ prop_blanks (Sudoku rs) = and [(rs !! (fst ts)) !! (snd ts) == Nothing
     | otherwise = x : (!!=) xs (pos - 1, e)
 
 
+-- Checks so length is preserved 
 prop_insertlength xs (pos, e) = 
     pos >= 0 && pos < length xs ==> length xs == length (xs !!= (pos, e))
     where types = e :: Integer
 
 
+-- Checks so that the inserted element is in the list after !!=
 prop_insertelem xs (pos, e) = 
     pos >= 0 && pos < length xs ==> e `elem` (xs !!= (pos, e))
     where types = e :: Integer
@@ -237,6 +240,8 @@ instance Arbitrary NewPos where
                    y <- choose (0,8)
                    return $ P (x,y)
 
+
+-- Checks so that the sudoku was updated properly
 prop_update sudoku (P (x,y)) value = 
     ((rows (update sudoku (x,y) value)) !! x) !! y == value
 
@@ -255,6 +260,7 @@ candidates (Sudoku rs) (x,y) =
                 Just 5, Just 6, Just 7, Just 8, Just 9]
     
 
+-- Returns a 3x3 block
 pickBlock rs (x,y)
     | x < 3 && y < 3 = (build3x3 rs) !! 0
     | x < 3 && y < 6 = (build3x3 rs) !! 1
@@ -267,51 +273,94 @@ pickBlock rs (x,y)
 
 -- * F1
 
+-- | Solves a given sudoku
 solve :: Sudoku -> Maybe Sudoku
 solve sudoku 
     | not (isSudoku sudoku || isOkay sudoku) = Nothing
     | otherwise = solve' sudoku
 
 
+-- | Helper function of solve
 solve' :: Sudoku -> Maybe Sudoku
 solve' sudoku
-    | blanks sudoku == [] = Just sudoku
-    | otherwise = case solve updatedSud of
+    | blanks sudoku == [] = Just sudoku -- if no blanks left then we are done
+    | otherwise = case updatedSud of 
                       Nothing -> Nothing
-                      _       -> solve' sudoku -- sud
-
+                      Just sud -> case solve sud of
+                                      Nothing -> Nothing
+                                      _       -> solve' sud 
 
     where emptyCell  = head (blanks sudoku) -- choose the first blank cell
           cands      = candidates sudoku emptyCell -- find all candidates
 
-          updatedSud = undefined {-case solve (update sudoku emptyCell (possibleCandidate cands)) of
-                                       Nothing -> update sudoku emptyCell (possibleCandidate (drop 1 cands))
-                                       _       -> (update sudoku emptyCell (possibleCandidate cands))-}
+          updatedSud = possibleSolution sudoku emptyCell cands
 
 
-helper :: Sudoku -> Pos -> [Int] -> Maybe Sudoku
-helper sudoku p cs = case c of
-                         Nothing -> Nothing
-                         Just x  -> Just $ update sudoku p (Just x)
+-- | Helper function that checks if the position has a possible candidate, 
+-- updates the position with the candidate
+-- and then returns the updated sudoku
+possibleSolution :: Sudoku -> Pos -> [Int] -> Maybe Sudoku
+possibleSolution sudoku p cs = 
+    case c of
+        Nothing -> Nothing 
+        Just x  -> case (solve $ u (Just x)) of
+                       Nothing             -> possibleSolution sudoku p (drop 1 cs)
+                       Just solution       -> Just solution
     where c = possibleCandidate cs
+          u = update sudoku p
 
 
-
+-- Gives the first candidate of a cell, from the list of all possible candidates 
 possibleCandidate :: [Int] -> Maybe Int
 possibleCandidate [] = Nothing
 possibleCandidate (x:xs) = Just x
 
 
+
 -- * F2
+
+-- Reads a sudoku and solves it
+readAndSolve :: FilePath -> IO ()
+readAndSolve file = 
+    readSudoku file >>= \sud -> 
+    printSudoku (fromJust (solve sud))
 
 
 
 -- * F3
 
+-- Checks so that the first sudoku is a solution of the second one,
+-- and so that all elements in the second is maintained in the first
+isSolutionOf :: Sudoku -> Sudoku -> Bool
+isSolutionOf first second = 
+    ((solved1 /= Nothing) && isFilled first) 
+
+    && maintained (concat (rows first)) (concat (rows second))
+
+    where solved1 = solve first
+
+-- Helper: checks so all elements in the second sudoku are maintained in the first one
+maintained :: [Maybe Int] -> [Maybe Int] -> Bool
+maintained [] [] = True
+maintained (f:fs) (s:ss)
+    | s == Nothing = (maintained fs ss)
+    | otherwise = f == s && (maintained fs ss)
+
+
+
 
 
 -- * F4
+-- If we generate a solveable sudoku, then the solution of that should be a proper
+-- solution of the sudoku we originally generated
+prop_SolveSound :: Sudoku -> Property
+prop_SolveSound sud = solve sud /= Nothing ==> 
+    case solve sud of
+        Nothing       -> label "Not solveable" True
+        Just solution -> label "Correct solution" $ isSolutionOf solution sud
+    
 
+fewerChecks prop = quickCheckWith stdArgs{ maxSuccess = 30 } prop
 
 -----------------------------------------------------------------------------
 
