@@ -1,4 +1,4 @@
-module Sudoku where
+ module Sudoku where
 
 import Test.QuickCheck
 import Data.List
@@ -272,7 +272,6 @@ pickBlock rs (x,y)
 -----------------------------------------------------------------------------
 
 -- * F1
-
 -- | Solves a given sudoku
 solve :: Sudoku -> Maybe Sudoku
 solve sudoku 
@@ -318,7 +317,6 @@ possibleCandidate (x:xs) = Just x
 
 
 -- * F2
-
 -- Reads a sudoku and solves it
 readAndSolve :: FilePath -> IO ()
 readAndSolve file = 
@@ -328,7 +326,6 @@ readAndSolve file =
 
 
 -- * F3
-
 -- Checks so that the first sudoku is a solution of the second one,
 -- and so that all elements in the second is maintained in the first
 isSolutionOf :: Sudoku -> Sudoku -> Bool
