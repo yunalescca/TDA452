@@ -1,0 +1,226 @@
+LAZINESS: USE AND CONTROL
+=========================
+
+-- An expensive function: Fibonacci, for every recursive call requires two more recursive calls
+
+-- A cheap function:
+choice :: Bool -> a -> a -> a
+choice False x y = x
+choice True  x y = y
+
+so, choice False 17 (expensive 9999) will just return 17 immediately, because Haskell is a lazy language. It doesn't compute anything it doesn't need to in order to get to the answer
+
+-- In Haskell, an argument is only computed when it's needed. If that thing is needed, then it's just evaluated once.
+
+------------------------------------------------------------------------
+
+-- When is a value "needed"?
+strange :: Bool -> Integer
+strange False = 17
+strange True  = 17
+
+Use undefined or error to test if something is evaluated
+Main> strange undefined
+
+^ Won't work. Even though *strange* always returns 17, whether it is given True or False, it needs one of them. It needs a value, and calling strange with undefined won't provide either of those.
+
+-- An argument is evaluated when a pattern match occurs
+
+------------------------------------------------------------------------
+
+apa :: Integer -> Integer
+apa x = (f x)^2 + f x + 1
+Main> apa (6^2)
+
+: 6^2 evaluated once but f (36) evaluated twice, because f x is called in two seperate places in the function. Computed twice because it appears twice in the code. Lift out and create a local variable
+
+------------------------------------------------------------------------
+
+-- Infite lists: because of laziness, values in Haskell can be infinite. Do not compute them completely! Instead, only use parts of them
+	take n [3..]
+	xs `zip` [1..s]
+
+
+iterate :: (a -> a) -> a -> [a]
+iterate f x = x : iterate f (f x)
+	no base case because we want it to go on forever
+		main> iterate (*2) 1 == [1,2,4,8,16,32,64,...]
+
+
+
+repeat :: a -> [a]
+repeat x = x : repeat x
+	iterate id x
+
+cycle [a] -> [a]
+cycle xs = xs ++ cycle xs
+	cycle cs = concat (repeat xs)
+
+
+replicate :: Int -> a -> [a]
+replicate n x = take n (repeat x)
+	
+
+group :: Int -> [a] -> [[a]]
+group = ?
+	main> group 3 "apabepacepa!"
+	["apa,", "bep", "ace", "pa!"]
+
+	group n = takeWhile (not . null)
+	          . map (take n)
+	          . iterate (drop n)
+
+
+primes :: [Integer]
+primes = ?
+	main> take 4 primes
+	[2,3,5,7]
+
+	primes :: [Integer]
+	primes = sieve [2..]
+		where
+			sieve (x:xs) = x : sieve [y | y <- xs, y `mod` x /= 0]
+
+
+------------------------------------------------------------------------
+
+-- If measuring the time, Haskell will compute the big list the first time and that will take much longer than when you run the speedtest a second time. However, you can just add a space character somewhere in the code and then reload the module, and you will have a real speedtest again.
+
+------------------------------------------------------------------------
+
+LAZY IO
+
+-- readFile does not actually read in the whole file
+
+-- Nothing happens when you define a definition. You have to use it to actually compute it. 
+
+
+OTHER IO VARIANTS
+
+-- String is a list of Char, each element is thus allocated individually. IO using String has very poor performance.
+	- Data.ByteString provides an alternative non-lazy array-like representation ByteString
+
+
+------------------------------------------------------------------------
+
+Controlling Laziness (The darker side)
+
+-- Haskell includes some deatures to reduce the amount of laziness lalowing us to decide when something gets evaluated
+
+-- Used for performance tuning, particularly for controlling space usage
+
+- Not recommended that you mess with this unless you have to - hard to get right in general
+
+
+
+
+million :: Integer
+million = 1000000
+	Main> sum [1..million]
+	** Exception: Stack overflow ** 
+
+-- sum of a list of numbers
+sum' :: [Integer] -> Integer
+sum' [] = 0
+sum' (x:xs) = x + sum' xs
+	Main> sum' [1..million]
+	** Exception: Stack overflow ** 
+
+Actually not a problem of lazy evaluation! All languages will have problems with this. This kind of recursion is difficult. 
+1 + (2 + (3 + ...))
+In order to compute 1 + the rest, we need to compute the rest first
+1 + something
+2 + something
+3 + something ... 
+when we get to the end we can start with the addition
+
+
+-- Tail Recursion
+	- Important concept in non-lazy functional programming for efficient recursion.
+	- Also useful in Haskell for recursive functions which compute a basic typed result (Integer, Double, Int,...)
+
+	- A function is tail recursive if the recursive call itself produces the result
+
+	- Example
+		last :: [a] - >a
+		last [x] = x
+		last (x:xs) = last xs
+
+		the result for last [a] is actually the result of the recursive call last xs
+
+	- The sum defined above did not use T.R, because the recursive call wasn't the result. After we got back the last recursive call we still had to do something with it. 
+
+	- Tail recursive sum
+		sum' :: [Integer] -> Integer
+		sum' = s 0
+		    where s acc [] = acc
+		          s acc (x:xs) = s (acc:x) xs
+
+    	- not typically used with lazy data (e.g. lists) since it stops us producing any of the result lit until the last step of the recursion. 
+    	- But not this is an Integer, and we can't laziness compute an Integer. We can't get a bit of an Integer.
+
+    
+-- foldr vs foldl
+	- foldr is what we've seen before. You take a list of things, and what foldr does with a function and a base case. You can think conceptually replace each cons in the spine of the list with the function and replace the null(?) at the end with the base case.
+	- foldl (fold from  left) uses tail recursion, applying some function to a list, but starting to the left of it.
+
+------------------------------------------------------------------------
+
+-- seq :: a -> b -> b
+	which forces its first argument to eb evaluated (typically before evaluating the second)
+
+------------------------------------------------------------------------
+
+SPACE LEAK
+
+-- This problem is often called space leak (see sands10.hs)
+	- Sum forces us to build the whole of [1..million]
+	- laziness ("at most once") requires us to keep the list in memory since it's going to be used by length
+	- If we only computed sum then the garbage collector would collect it as we go along
+
+------------------------------------------------------------------------
+
+CONCLUSION
+
+-- Laziness
+	- Evaluate "at most once"
+	- Programming style
+
+-- Do not have to use it
+	- But powerful tool!
+
+-- Can make programs more "modular"
+
+-- Performance issues tricky
+	- Evaluation can be controlled using e.g. tail recursion and strictness
+
+------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

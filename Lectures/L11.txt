@@ -1,0 +1,12 @@
+WEB/GUI PROGRAMMING
+===================
+
+-- Recap laziness : Haskell will only compute as far it needs to in order to perform a computation / function 
+
+
+
+
+-- WWW = HTML + URL
+
+-- hastec --output-html HasteIntro.hs
+   open -a Safari HasteIntro.html
