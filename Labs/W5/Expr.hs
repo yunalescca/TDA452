@@ -3,6 +3,8 @@ module Expr where
 import Data.List
 import Data.Char
 import Test.QuickCheck 
+import Parsing
+import Data.Maybe(fromJust)
 
 -----------------------------------------------------------------------------
 
@@ -26,17 +28,23 @@ instance Show Expr where
 -- of consistency and personal taste
 showExpr :: Expr -> String
 showExpr (Num n) = show n
-showExpr (Var x) = x
+showExpr (Var _) = "x"
 showExpr (Add e1 e2) = showExpr e1 ++ " + " ++ showExpr e2
 showExpr (Mul e1 e2) = showFactor e1 ++ " * " ++ showFactor e2
-showExpr (Sin e)     = "sin(" ++ showExpr e ++ ")"
-showExpr (Cos e)     = "cos(" ++ showExpr e ++ ")"
+showExpr (Sin e)     = "sin " ++ sincosPar e 
+showExpr (Cos e)     = "cos " ++ sincosPar e
 
 
 -- | Helper function to add parentheses when we have addition inside
 -- of a multiplication expression
 showFactor (Add e1 e2) = "(" ++ showExpr (Add e1 e2) ++ ")"
 showFactor e           = showExpr e
+
+-- | Helper functiion to add parentheses when we have addition or
+-- multiplication inside of sin or cos
+sincosPar (Add e1 e2) = "(" ++ showExpr (Add e1 e2) ++ ")"
+sincosPar (Mul e1 e2) = "(" ++ showExpr (Mul e1 e2) ++ ")"
+sincosPar e           = showExpr e
 
 
 
@@ -55,13 +63,45 @@ eval (Cos e)     x = cos (eval e x)
 -- **D**
 -- | ...
 readExpr :: String -> Maybe Expr
-readExpr = undefined
+readExpr s = case parse expr (filter (not.isSpace) s) of
+                 Just (e, "") -> Just e
+                 _            -> Nothing
+
+doubles :: Parser Double
+doubles = (readsP :: Parser Double)
+
+expr, term, factor :: Parser Expr
+
+expr = do t <- term
+          ts <- zeroOrMore (do char '+'; term)
+          return (foldl Add t ts)
 
 
+term = do t <- factor
+          ts <- zeroOrMore (do char '*'; factor)
+          return (foldl Mul t ts)
 
 
-
-
+factor = do n <- doubles
+            return (Num n)
+            <|>
+            do char '('
+               e <- expr
+               char ')'
+               return e
+               <|>
+               do char 's'
+                  char 'i'
+                  char 'n'
+                  fmap Sin factor
+                  <|>
+                  do char 'c'
+                     char 'o'
+                     char 's'
+                     fmap Cos factor
+                     <|>
+                     do char 'x'
+                        return (Var "x")
 
 
 
