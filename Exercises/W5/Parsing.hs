@@ -1,3 +1,5 @@
+-- lecture notes
+
 {-
 
 Will export an abstract datatype for Parser, which means a 
@@ -66,24 +68,24 @@ parse (P func) s = func s -- s can be omitted
 -- * When you apply the parser to a string, it always
 -- gives you Nothing
 -- a constructor P containing a Nothing, always producing Nothing
+-- P is the constructor, taking a function: It's a function that takes
+-- a string, and always produces/returns nothing.
 failure :: Parser a -- always fails
-failure = P $ \s ->
-          Nothing
+failure = P (\s -> Nothing) 
 
 
 -- Doesn't care what a is, always returns it and the string
 -- We will apply success over a string s
 -- parse (success 42) "apa" --- applies (success 42) over "apa"
 success :: a -> Parser a
-success a = P $ \s ->
-            Just(a, s)
+success a = P (\s -> Just(a, s))
 
 -----------------------------------------------------------------------------
 
 -- * Parse a single character
 item :: Parser Char
 item = P $ \s ->
-       case s of 
+       case s of -- if the string contains at least one character, parse that character
            (c:s') -> Just (c, s')
            _      -> Nothing
 
@@ -109,7 +111,7 @@ p +++ q = P $ \s ->
 -- it determines how we parse the second thing
 
 -- p >*> f    parse using p to produce a, then parse using f a
--- Takes in a a parser and a functionw which returns a parser
+-- Takes in a a parser and a function which returns a parser
 infixl 1 >*>
 -- Parses an a, than takes the result and feeds into a function
 (>*>) :: Parser a -> (a -> Parser b) -> Parser b

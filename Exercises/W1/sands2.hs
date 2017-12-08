@@ -47,7 +47,7 @@ prop_rankBeats r1 r2  = r1 == r2 |+| r1 `rankBeats` r2
                                  |+| r2 `rankBeats` r1
 
 infixr 2 |+| -- infix right 
-True  |+| False = True
+True  |+| False = True2
 False |+| True  = True
 _     |+| _     = False
 

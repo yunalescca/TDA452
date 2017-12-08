@@ -43,7 +43,7 @@ Aim: reusable Parser combinators including
 
 -- The same as it was before (type Parser = ...)
 -- But now we have built a new type, which is exactly how it
--- was before, except now it is hidden inside a constructor P
+-- was before, except now it is hidden insi de a constructor P
 -- When we only have one parameter, then by convention we call it
 -- a newtype
 -- Used by the function parse 
@@ -116,7 +116,7 @@ infixl 1 >*>
 p >*> f = P $ \s -> 
             case parse p s of 
                 Just (a, s') -> parse (f a) s' -- if first parse was successful, then parse using
-                                              -- (f a) on s
+                                              -- (f a) on s'
                 Nothing      -> Nothing -- if the first thing fails, the whole thing fails
 
 -----------------------------------------------------------------------------
@@ -124,7 +124,7 @@ p >*> f = P $ \s ->
 -- sat p parse a single character satisfying property p
 -- sat = satisfy!
 sat :: (Char -> Bool) -> Parser Char
-sat p = item >*> \c -> if p c then success c else failure
+sat p = item >*> (\c -> if p c then success c else failure)
 
 -- if c is the first symbol in string
 char :: Char -> Parser Char
@@ -138,10 +138,13 @@ digit  = sat isDigit
 -- which says ...
 -- "aBxxx" == Nothing
 -- "bBxxx" == Just (B, "xxx")
--- first item, then the function on the result
+-- first item, then the function on the result   a     s' (FEED THE RESULT INTO THE FUNCTION)
 -- "hHej" -- then the result from item is Just ('h', "Hej")
--- and \c will be 'h', which is the first result 
-lowerUpper = item >*> \c -> char (toUpper c)
+-- then : parse (f 'h') "Hej"
+-- "(\c -> ...)" is a function which takes a character, and does something with that character..
+-- .. it runs toUpper on that character, and then checks  if that new character
+-- is the first character in s'
+lowerUpper = item >*> (\c -> char (toUpper c)) -- == Just ('H', "ej")
 
 -----------------------------------------------------------------------------
 
@@ -149,19 +152,21 @@ lowerUpper = item >*> \c -> char (toUpper c)
 -- * pmap modifies the result of a parser
 -- the result is called a 
 pmap :: (a -> b) -> Parser a -> Parser b
-pmap f p = p >*> \a -> success (f a)
+pmap f p = p >*> (\a -> success (f a))
 
 
 -----------------------------------------------------------------------------
 
 
--- Parse p, throw away the result, then parse the rest with q
--- parse (char '{' >-> digit) "{123}"  == Just ('1', "23}")
+-- Parse p, throw away the result, then parse the rest with q --IS THE RESULT A OR JUST(A, S')?
+-- parse (char '{' >-> digit) "{123}"  == Just ('1', "23}") 
+  -- parse (char '{') "{123}" == Just('{', "123}") == Just (a, s')
+  -- 
 -- parse (char '{' >-> digit) "123}"   == Nothing
 -- parse (char '{' >-> digit) "{.123}" == Nothing
 
 (>->) :: Parser a -> Parser b -> Parser b
-p >-> q = p >*> \_ -> q --- so the \_ is the result from p
+p >-> q = p >*> (\_ -> q) --- so the \_ is the result from p
 
 
 -- Parses a p, and then just parses q just to make sure it's there,
@@ -169,16 +174,20 @@ p >-> q = p >*> \_ -> q --- so the \_ is the result from p
 -- Parse with p, feed the result of that parse to the function
 -- which parses with q and then throws the result of that away
 -- and then succeeds with what you found in the first parser
+
+-- parse (char '{' >-> digit <-< char '}') "{1}"
+
 (<-<) :: Parser b -> Parser a -> Parser b
-p <-< q = p >*> \a -> q >-> success a
+p <-< q = p >*> (\b -> q >-> success b)
 
 
 -- Parser a parses one thing
 -- Parser [a] parses a bunch of things
 -- First we parse the first thing, then the bunch of things
 -- then return the result of joining the first thing with the rest
+-- To test, we need a parser which returns Parser [a], e.g. oneOrMore/zeroOrMore
 (<:>) :: Parser a -> Parser [a] -> Parser [a]
-p <:> q = p >*> \a -> pmap (a: ) q
+p <:> q = p >*> (\a -> pmap (a:) q)
 
 
 -----------------------------------------------------------------------------
