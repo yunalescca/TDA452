@@ -4,6 +4,7 @@ import Data.List
 import Data.Char 
 import Test.QuickCheck
 import qualified Data.Map as Map
+import Control.Monad 
 
 -- * Examples from Learn You A Haskell
 
@@ -130,33 +131,39 @@ zipWith' _ _ [] = []
 zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
 
 
---       zip [1..] "hello" == [(1,'h'),(2,'e'),(3,'l'),(4,'l'),(5,'o')]
--- flip' zip [1..] "hello" == [('h',1),('e',2),('l',3),('l',4),('o',5)]
--- flip applies a function to two arguments, but flips the arguments
+{- 
+	zip [1..] "hello" == [(1,'h'),(2,'e'),(3,'l'),(4,'l'),(5,'o')]
+ flip' zip [1..] "hello" == [('h',1),('e',2),('l',3),('l',4),('o',5)]
+ flip applies a function to two arguments, but flips the arguments
+-}
 flip' :: (a -> b -> c) -> b -> a -> c
 flip' f y x = f x y
 
 
--- Lambdas are expressions
--- Lambdas can take several arguments    *a*         *b*
--- Its argument are all variables to the left of ->  
+{-
+	Lambdas are expressions
+    Lambdas can take several arguments    *a*         *b*
+	Its argument are all variables to the left of ->  
+-}
 funs = zipWith (\a b -> (a + 1) / b) [5,4,3,2,1] [1,2,3,4,5] 
 
 
 -- ==FOLDS==--
+{-
+	A fold takes a binary function, a starting value (I like to 
+	call it the accumulator) and a list to fold up. The binary function itself
+	takes two parameters : the accumulator and the first (or last) element in the list.
+	It will produce a new accumulator and now new first (or last) element in list
+	Once we've walked over the whole list, only the accumulator remains, which is what
+	we have reduced the list to.
+-}
 
--- A fold takes a binary function, a starting value (I like to 
--- call it the accumulator) and a list to fold up. The binary function itself
--- takes two parameters : the accumulator and the first (or last) element in the list.
--- It will produce a new accumulator and now new first (or last) element in list
--- Once we've walked over the whole list, only the accumulator remains, which is what
--- we have reduced the list to.
-
--- First let's take a look at the foldl function, also called the left fold. It 
--- folds the list up from the left side. The binary function is applied between 
--- the starting value (accumulator) and the HEAD of the list. That produces a new accumulator 
--- value and the binary function is called with that value and the next element, etc.
-
+{-
+	First let's take a look at the foldl function, also called the left fold. It 
+	folds the list up from the left side. The binary function is applied between 
+	the starting value (accumulator) and the HEAD of the list. That produces a new accumulator 
+	value and the binary function is called with that value and the next element, etc.
+-}
 
 -- foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b
 -- foldr :: Foldable t => (a -> a -> b) -> b -> t a -> b
@@ -174,12 +181,13 @@ sum' xs = foldl (\acc x -> acc + x) 0 xs
 elem'' :: Eq a => a -> [a] -> Bool
 elem'' y ys = foldl (\acc x -> if x == y then True else acc) False ys
 
-
--- foldr is the same as left fold, only the accumulator eats up the elements
--- from the right. Also, the parameters are switch, so instead of 
--- \acc x -> we have \x acc -> (accumulator is on the right side because it 
--- starts from the right) (x is still the current value)
--- foldr's x is the last element in the list 
+{-
+	foldr is the same as left fold, only the accumulator eats up the elements
+	from the right. Also, the parameters are switch, so instead of 
+	\acc x -> we have \x acc -> (accumulator is on the right side because it 
+	starts from the right) (x is still the current value)
+	foldr's x is the last element in the list 
+-}
 
 -- the : operator is much cheapar than the ++ one, so we usually use right fold
 -- when building up a new list
@@ -207,19 +215,21 @@ head'' = foldr1 (\x _ -> x) -- it would probably be 'better' with foldl!
 
 
 -- ==SCAN==--
-
--- scanl and scanr are like foldl and foldr, only they report all the intermediate
--- accumulators states. The last element in scanl is the result of foldl, and
--- the first element in scanr is the result of foldr
-
+{-
+	scanl and scanr are like foldl and foldr, only they report all the intermediate
+	accumulators states. The last element in scanl is the result of foldl, and
+	the first element in scanr is the result of foldr
+-}
 scanl'' = scanl (+) 0 [3,5,2,1] -- [0, 3, 8, 10, 11]
 scanr'' = scanr (+) 0 [3,5,2,1] -- [11, 8, 3, 1, 0]
 
 
 -- ==FUNCTION APPLICATION==--
--- ($) :: (a -> b) -> a -> b
--- The expression on its right is applied as the parameter to the function
--- on its left
+{-
+	($) :: (a -> b) -> a -> b
+	The expression on its right is applied as the parameter to the function
+	on its left
+-}
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
@@ -228,29 +238,30 @@ scanr'' = scanr (+) 0 [3,5,2,1] -- [11, 8, 3, 1, 0]
 -- MODULES
 
 -- ==QUALIFIED MODULED==--
+{-
+	If we want to import a module which has name clashes of functions already
+	defined in the prelude, we can import the module as
+		import qualified Data.Map
+	so when we want to use Data.Map's filter function, we have to call it by
+		Data.Map.filter .... and the 'filter' call will still be from Prelude
+	 We can also rename the module
+		import qualified Data.Map as M
+		M.filter ....
+-}
 
--- If we want to import a module which has name clashes of functions already
--- defined in the prelude, we can import the module as
--- 		import qualified Data.Map
--- so when we want to use Data.Map's filter function, we have to call it by
--- 		Data.Map.filter .... and the 'filter' call will still be from Prelude
--- We can also rename the module
---		import qualified Data.Map as M
---		M.filter ....
+{-
+	***foldl' and foldr'*** are stricter versions than the lazy foldl and foldr
+	In foldl/r, the accumulator doesn't actually get updated while the folding
+	happens, but makes a promise that it will produce a result when asked.
+	This can produce a stack overflow error because it saves everything. If that
+	happens we can use foldl' and foldr' instead. They compute the value as they go along
+-}
 
-
--- ***foldl' and foldr'*** are stricter versions than the lazy foldl and foldr
--- In foldl/r, the accumulator doesn't actually get updated while the folding
--- happens, but makes a promise that it will produce a result when asked.
--- This can produce a stack overflow error because it saves everything. If that
--- happens we can use foldl' and foldr' instead. They compute the value as they go along
-
-
-
--- ***any/all*** takes a predicate and a list (a foldable) and checks if
--- any or all elements in the list satisfies the predicate.
--- Usually we use these instead of mapping over a list and then using and/or
-
+{-
+	***any/all*** takes a predicate and a list (a foldable) and checks if
+	any or all elements in the list satisfies the predicate.
+	Usually we use these instead of mapping over a list and then using and/or
+-}
 
 -- ***span/break*** returns the tuple of (takeWhile, dropWhile) / (dropWhile, takeWhile)
 
@@ -258,26 +269,29 @@ scanr'' = scanr (+) 0 [3,5,2,1] -- [11, 8, 3, 1, 0]
 -- ***isInfixOf*** searches for sublist in a list
 -- ***isPrefix/SuffixOf*** checks prefix/suffix
 
+{-
+	***partition*** takes a predicate and a list, and returns a tuple. (p x, not p x)
+	While span and break are done once they encounter the first element that 
+	doesn't and does satisfy the predicate, partition goes through the whole 
+	list and splits it up according to the predicate.
+-}
 
--- ***partition*** takes a predicate and a list, and returns a tuple. (p x, not p x)
--- While span and break are done once they encounter the first element that 
--- doesn't and does satisfy the predicate, partition goes through the whole 
--- list and splits it up according to the predicate.
+{-
+	***find*** takes a predicate and a list and returns the first element as a Maybe,
+	which satisfies the predicate
+-}
 
+{-
+	***elemIndex*** returns the index of an element in a list (as a Maybe)
+	***elemIndicises*** returns a list of the indicises
+-}
 
--- ***find*** takes a predicate and a list and returns the first element as a Maybe,
--- which satisfies the predicate
-
-
-
--- ***elemIndex*** returns the index of an element in a list (as a Maybe)
--- ***elemIndicises*** returns a list of the indicises
-
-
--- ***findIndex*** is like find, but it maybe returns the index of the first element 
--- that satisfies the predicate
--- ***findIndicises*** returns the indices of all elements that satisfy the predicate 
--- in the form of a list.
+{-
+	***findIndex*** is like find, but it maybe returns the index of the first element 
+	that satisfies the predicate
+	***findIndicises*** returns the indices of all elements that satisfy the predicate 
+	in the form of a list.
+-}
 
 -----------------------------------------------------------------------------
 -----------------------------------------------------------------------------
@@ -311,36 +325,124 @@ data P2 = P2 String String Int Float String String
 firstName' (P2 fName _ _ _ _ _ ) = fName
 
 
--- Now we want a Person to always have the above parameters, but if a Person
--- would have either a name, or a phone number etc, we could have written it like 
+{-
+	Now we want a Person to always have the above parameters, but if a Person
+	would have either a name, or a phone number etc, we could have written it like 
+-}
 
 data P3 = Name String String | Phone Int | Age Int
     deriving (Show) 
 
+{-
+	Type constructors are data type but also has a type parameter involved
+	like Maybe a = Nothing | Just a
+-}
 
--- Type constructors are data type but also has a type parameter involved
--- like Maybe a = Nothing | Just a
+{-
+	we derive Ord if we want our types to be bigger than the one that comes after.
+	so data Bool = False | True deriving (Ord)
+	means that False > True
+-}
 
+{-
+	when we have a datatype with more than one type constructor, but those take
+	no parameters, we can make it part of the Enum typeclass
+	By making it a part of the Bounded typeclass, we say that we have 
+	things that have a lowest possible value and highest possible value
+-}
 
-
--- we derive Ord if we want our types to be bigger than the one that comes after.
--- so data Bool = False | True deriving (Ord)
--- means that False > True
-
-
--- when we have a datatype with more than one type constructor, but those take
--- no parameters, we can make it part of the Enum typeclass
--- By making it a part of the Bounded typeclass, we say that we have 
--- things that have a lowest possible value and highest possible value
 data Day = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
     deriving (Eq, Ord, Show, Read, Bounded, Enum)
 
---minBound :: Day == Monday
---bc of Enum : succ Monday == Tuesday 
-
-
-
+{-
+	minBound :: Day == Monday
+	bc of Enum : succ Monday == Tuesday 
+-}
 -- type classes such as Eq, work like Interfaces
+
+-- == FUNCTOR ==--
+-- 
+
+{-
+	Functors are for things that can be mapped over
+
+	class Functor f where
+		fmap :: (a -> b) -> f a - > f b
+
+	Here, f is not a concrete type as in Eq a => a -> ..., like Int or String, 
+	but a type constructor that takes one type parameter. 
+		Like Maybe is a type constructor which takes an a.
+
+	Lists are an instance of the Functor class:
+
+	instance Functor [] where
+		fmap = map
+
+	instance Functor Maybe where
+		fmap f (Just x) = Just (f x)    -- replace f by Maybe
+		fmap f Nothing  = Nothing
+-}
+
+
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+-- INPUT AND OUTPUT
+
+{-
+	***sequence***
+	do a1 <- action
+	   a2 <- action
+	   print [a1,a2]
+	==
+
+	do as <- sequence [action, action]
+	   print as
+-}
+
+{-
+	***forever***
+	takes an IO action and repeats it forever
+-}
+
+main1 = forever $ do  
+    putStr "Give me some input: "  
+    l <- getLine  
+    putStrLn $ map toUpper l  
+
+
+-- ***forM***
+main2 = do   
+    colors <- forM [1,2,3,4] (\a -> do  
+        putStrLn $ "Which color do you associate with the number " ++ show a ++ "?"  
+        color <- getLine  
+        return color)  
+    putStrLn "The colors that you associate with 1, 2, 3 and 4 are: "  
+    mapM putStrLn colors  
+
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+-- FUNCTIONALLY SOLVING PROBLEMS
+
+-- * Reverse Polish Calculator
+
+solveRPN :: (Read a, Num a) => String -> a
+solveRPN = head . foldl foldingFunction [] . words
+    where foldingFunction (x:y:ys) "*" = (x * y) : ys
+          foldingFunction (x:y:ys) "+" = (x + y) : ys
+          foldingFunction (x:y:ys) "-" = (x - y) : ys
+          foldingFunction xs numberString = read numberString : xs
+
+
+
+
+
+
 
 
 
