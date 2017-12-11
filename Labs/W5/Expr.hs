@@ -15,11 +15,11 @@ data Expr = Num Double
           | Mul Expr Expr 
           | Sin Expr
           | Cos Expr 
-    deriving Eq
+    deriving (Eq, Show)
 
 
-instance Show Expr where
-    show = showExpr
+{-instance Show Expr where
+    show = showExpr-}
 
 
 -- **B**
@@ -67,8 +67,8 @@ readExpr s = case parse expr (filter (not.isSpace) s) of
                  Just (e, "") -> Just e
                  _            -> Nothing
 
-doubles :: Parser Double
-doubles = (readsP :: Parser Double)
+number :: Parser Double
+number = (readsP :: Parser Double)
 
 expr, term, factor :: Parser Expr
 
@@ -82,7 +82,7 @@ term = do t <- factor
           return (foldl Mul t ts)
 
 
-factor = do n <- doubles
+factor = do n <- number
             return (Num n)
             <|>
             do char '('
@@ -102,6 +102,72 @@ factor = do n <- doubles
                      <|>
                      do char 'x'
                         return (Var "x")
+
+
+
+prop_ShowReadExpr:: Expr -> Bool
+prop_ShowReadExpr e = let s       = showExpr e 
+                          Just e' = readExpr s in 
+    showExpr e' == s 
+
+
+
+arbExpr :: Int -> Gen Expr
+arbExpr s = frequency [(1, rNum), (1, rVar), (s, rOp), (s, rGeo)]
+    where rNum = do n <- arbitrary
+                    return $ Num n
+                  
+          rOp = do op <- elements [Mul, Add]
+                   e1 <- arbExpr s'
+                   e2 <- arbExpr s'
+                   return $ op e1 e2
+
+          rGeo = do op <- elements [Sin, Cos]
+                    e  <- arbExpr s'
+                    return $ op e
+
+          rVar = elements $ map Var["x"]
+          s' = (s `div` 2)
+
+
+instance Arbitrary Expr where
+    arbitrary = sized arbExpr
+
+
+
+simplify :: Expr -> Expr
+simplify (Num n) = (Num n)
+simplify (Var "x") = (Var "x")
+
+simplify (Add e1 e2) 
+    | e1 == (Num 0) = simplify e2
+    | e2 == (Num 0) = simplify e1
+    | otherwise = (Add (simplify e1) (simplify e2))
+
+
+simplify (Mul e1 e2) 
+    | e1 == (Num 0) || e2 == (Num 0) = (Num 0)
+    | e1 == (Num 1) = simplify e2
+    | e2 == (Num 1) = simplify e1
+    | otherwise = (Mul (simplify e1) (simplify e2))
+
+
+simplify (Sin e) = Sin (simplify e)
+simplify (Cos e) = Cos (simplify e)
+
+
+prop_simplify :: Expr -> Double -> Bool
+prop_simplify e x = (eval e x) == (eval (simplify e) x)
+
+
+
+
+
+
+
+
+
+
 
 
 
