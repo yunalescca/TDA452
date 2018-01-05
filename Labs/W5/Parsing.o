@@ -1,0 +1,3439 @@
+{-# LINE 1 "/var/folders/wg/7f_h0cj91d1cykmnwrbq_by80000gn/T/ghc11134_0/ghc_1.s" #-}
+.data
+	.align 2
+.align 0
+.globl ___stginit_Parsing
+___stginit_Parsing:
+.data
+	.align 2
+.align 0
+.globl _Parsing_item1_closure
+_Parsing_item1_closure:
+	.long	_Parsing_item1_info
+.text
+	.align 2
+_Parsing_item1_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	0
+	.long	15
+.globl _Parsing_item1_info
+_Parsing_item1_info:
+Lc28s:
+	call 1f
+1:	popl	%eax
+	movl 8(%ebx),%ecx
+	leal -4(%ebp),%edx
+	cmpl 840(%ebx),%edx
+	jb Lc28t
+Lc28u:
+	addl $_c28i_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl %ecx,%esi
+	addl $-4,%ebp
+	testw $7,%si
+	jne _c28i_info
+Lc28j:
+	jmp *(%esi)
+Lc28t:
+	movl %ecx,8(%ebx)
+	movl L_Parsing_item1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_item1_info - _Parsing_item1_info_dsp
+.text
+	.align 2
+_c28i_info_dsp:
+.text
+	.align 2
+	.long	0
+	.long	32
+_c28i_info:
+Lc28i:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc28q
+Lc28r:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $4,%ebp
+	jmp *(%ebp)
+Lc28q:
+	addl $20,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc28E
+Lc28D:
+	movl 2(%esi),%ecx
+	movl 6(%esi),%edx
+	movl %eax,64(%esp)
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-16(%edi)
+	movl %ecx,-12(%edi)
+	movl %edx,-8(%edi)
+	movl 64(%esp),%eax
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $4,%ebp
+	jmp *(%ebp)
+Lc28E:
+	movl $20,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c28i_info - _c28i_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfAlternativeParser3_closure
+_Parsing_zdfAlternativeParser3_closure:
+	.long	_Parsing_zdfAlternativeParser3_info
+.text
+	.align 2
+_Parsing_zdfAlternativeParser3_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfAlternativeParser3_info
+_Parsing_zdfAlternativeParser3_info:
+Lc29h:
+	call 1f
+1:	popl	%eax
+	movl 24(%ebx),%ecx
+	movl 16(%ebx),%edx
+	movl %eax,64(%esp)
+	movl 8(%ebx),%eax
+	movl %eax,76(%esp)
+	leal -8(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc29i
+Lc29j:
+	movl 64(%esp),%eax
+	addl $_c298_info-(1b)+0,%eax
+	movl %eax,-8(%ebp)
+	movl %ecx,8(%ebx)
+	movl %edx,%esi
+	movl 76(%esp),%eax
+	movl %eax,-4(%ebp)
+	addl $-8,%ebp
+	jmp _stg_ap_p_fast
+Lc29i:
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zdfAlternativeParser3_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zdfAlternativeParser3_info - _Parsing_zdfAlternativeParser3_info_dsp
+.text
+	.align 2
+_c298_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c298_info:
+Lc298:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc29f
+Lc29g:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc29f:
+	addl $_c29p_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c29p_info
+Lc29q:
+	jmp *(%esi)
+	.long  _c298_info - _c298_info_dsp
+.text
+	.align 2
+_c29p_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c29p_info:
+Lc29p:
+	call 1f
+1:	popl	%eax
+	addl $40,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc29A
+Lc29z:
+	movl 3(%esi),%ecx
+	movl 7(%esi),%edx
+	movl %eax,64(%esp)
+	movl L_stg_ap_2_upd_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-36(%edi)
+	movl 4(%ebp),%eax
+	movl %eax,-24(%edi)
+	movl %ecx,-20(%edi)
+	movl 64(%esp),%eax
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	leal -36(%edi),%ecx
+	movl %ecx,-12(%edi)
+	movl %edx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc29A:
+	movl $40,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c29p_info - _c29p_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfMonadParser1_closure
+_Parsing_zdfMonadParser1_closure:
+	.long	_Parsing_zdfMonadParser1_info
+.text
+	.align 2
+_Parsing_zdfMonadParser1_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfMonadParser1_info
+_Parsing_zdfMonadParser1_info:
+Lc2al:
+	call 1f
+1:	popl	%eax
+	movl 24(%ebx),%ecx
+	movl 16(%ebx),%edx
+	movl %eax,64(%esp)
+	movl 8(%ebx),%eax
+	movl %eax,76(%esp)
+	leal -8(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2am
+Lc2an:
+	movl 64(%esp),%eax
+	addl $_c2ac_info-(1b)+0,%eax
+	movl %eax,-8(%ebp)
+	movl %ecx,8(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,%esi
+	movl %edx,-4(%ebp)
+	addl $-8,%ebp
+	jmp _stg_ap_p_fast
+Lc2am:
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zdfMonadParser1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zdfMonadParser1_info - _Parsing_zdfMonadParser1_info_dsp
+.text
+	.align 2
+_c2ac_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2ac_info:
+Lc2ac:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2aj
+Lc2ak:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2aj:
+	addl $_c2at_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2at_info
+Lc2av:
+	jmp *(%esi)
+	.long  _c2ac_info - _c2ac_info_dsp
+.text
+	.align 2
+_c2at_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2at_info:
+Lc2at:
+	movl 7(%esi),%eax
+	movl %eax,16(%ebx)
+	movl 3(%esi),%eax
+	movl %eax,8(%ebx)
+	movl 4(%ebp),%esi
+	addl $8,%ebp
+	jmp _stg_ap_pp_fast
+	.long  _c2at_info - _c2at_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfAlternativeParser1_closure
+_Parsing_zdfAlternativeParser1_closure:
+	.long	_Parsing_zdfAlternativeParser1_info
+.text
+	.align 2
+_Parsing_zdfAlternativeParser1_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfAlternativeParser1_info
+_Parsing_zdfAlternativeParser1_info:
+Lc2bc:
+	call 1f
+1:	popl	%eax
+	movl 24(%ebx),%ecx
+	movl 16(%ebx),%edx
+	movl %eax,64(%esp)
+	movl 8(%ebx),%eax
+	movl %eax,76(%esp)
+	leal -12(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2bd
+Lc2be:
+	movl 64(%esp),%eax
+	addl $_c2b3_info-(1b)+0,%eax
+	movl %eax,-12(%ebp)
+	movl %ecx,8(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,%esi
+	movl %edx,-8(%ebp)
+	movl %ecx,-4(%ebp)
+	addl $-12,%ebp
+	jmp _stg_ap_p_fast
+Lc2bd:
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zdfAlternativeParser1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zdfAlternativeParser1_info - _Parsing_zdfAlternativeParser1_info_dsp
+.text
+	.align 2
+_c2b3_info_dsp:
+.text
+	.align 2
+	.long	2
+	.long	32
+_c2b3_info:
+Lc2b3:
+	movl %esi,%eax
+	andl $7,%eax
+	cmpl $2,%eax
+	jae Lc2ba
+Lc2bb:
+	movl 8(%ebp),%eax
+	movl %eax,8(%ebx)
+	movl 4(%ebp),%esi
+	addl $12,%ebp
+	jmp _stg_ap_p_fast
+Lc2ba:
+	andl $-8,%esi
+	addl $12,%ebp
+	jmp *(%esi)
+	.long  _c2b3_info - _c2b3_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_failure1_closure
+_Parsing_failure1_closure:
+	.long	_Parsing_failure1_info
+.text
+	.align 2
+_Parsing_failure1_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	0
+	.long	15
+.globl _Parsing_failure1_info
+_Parsing_failure1_info:
+Lc2bD:
+	call 1f
+1:	popl	%eax
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	jmp *(%ebp)
+	.long  _Parsing_failure1_info - _Parsing_failure1_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfAlternativeParser4_closure
+_Parsing_zdfAlternativeParser4_closure:
+	.long	_Parsing_zdfAlternativeParser4_info
+.text
+	.align 2
+_Parsing_zdfAlternativeParser4_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_zdfAlternativeParser4_info
+_Parsing_zdfAlternativeParser4_info:
+Lc2bS:
+	call 1f
+1:	popl	%eax
+	addl $20,%edi
+	movl 16(%ebx),%ecx
+	movl 8(%ebx),%edx
+	cmpl 856(%ebx),%edi
+	ja Lc2bW
+Lc2bV:
+	movl %eax,64(%esp)
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-16(%edi)
+	movl %edx,-12(%edi)
+	movl %ecx,-8(%edi)
+	movl 64(%esp),%eax
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	jmp *(%ebp)
+Lc2bW:
+	movl $20,904(%ebx)
+	movl %ecx,16(%ebx)
+	movl %edx,8(%ebx)
+	movl L_Parsing_zdfAlternativeParser4_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zdfAlternativeParser4_info - _Parsing_zdfAlternativeParser4_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfAlternativeParserzuzdsliftM_closure
+_Parsing_zdfAlternativeParserzuzdsliftM_closure:
+	.long	_Parsing_zdfAlternativeParserzuzdsliftM_info
+.text
+	.align 2
+_Parsing_zdfAlternativeParserzuzdsliftM_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfAlternativeParserzuzdsliftM_info
+_Parsing_zdfAlternativeParserzuzdsliftM_info:
+Lc2c9:
+	movl 24(%ebx),%eax
+	movl %eax,24(%ebx)
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfAlternativeParser3_info
+	.long  _Parsing_zdfAlternativeParserzuzdsliftM_info - _Parsing_zdfAlternativeParserzuzdsliftM_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfAlternativeParser2_closure
+_Parsing_zdfAlternativeParser2_closure:
+	.long	_Parsing_zdfAlternativeParser2_info
+.text
+	.align 2
+_Parsing_zdfAlternativeParser2_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfAlternativeParser2_info
+_Parsing_zdfAlternativeParser2_info:
+Lc2cK:
+	call 1f
+1:	popl	%eax
+	movl 24(%ebx),%ecx
+	movl 16(%ebx),%edx
+	movl %eax,64(%esp)
+	movl 8(%ebx),%eax
+	movl %eax,76(%esp)
+	leal -8(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2cL
+Lc2cM:
+	movl 64(%esp),%eax
+	addl $_c2cB_info-(1b)+0,%eax
+	movl %eax,-8(%ebp)
+	movl %ecx,8(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,%esi
+	movl %edx,-4(%ebp)
+	addl $-8,%ebp
+	jmp _stg_ap_p_fast
+Lc2cL:
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zdfAlternativeParser2_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zdfAlternativeParser2_info - _Parsing_zdfAlternativeParser2_info_dsp
+.text
+	.align 2
+_c2cB_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2cB_info:
+Lc2cB:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2cI
+Lu2dp:
+	addl $8,%ebp
+	jmp _c2do_entry
+Lc2cI:
+	addl $_c2cS_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2cS_info
+Lc2cU:
+	jmp *(%esi)
+	.long  _c2cB_info - _c2cB_info_dsp
+.text
+	.align 2
+_c2cS_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2cS_info:
+Lc2cS:
+	call 1f
+1:	popl	%eax
+	addl $_c2cY_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 7(%esi),%eax
+	movl %eax,8(%ebx)
+	movl 3(%esi),%eax
+	movl 4(%ebp),%esi
+	movl %eax,4(%ebp)
+	jmp _stg_ap_p_fast
+	.long  _c2cS_info - _c2cS_info_dsp
+.text
+	.align 2
+_c2cY_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2cY_info:
+Lc2cY:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2dn
+Lu2dq:
+	addl $8,%ebp
+	jmp _c2do_entry
+Lc2dn:
+	addl $_c2d8_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2d8_info
+Lc2d9:
+	jmp *(%esi)
+	.long  _c2cY_info - _c2cY_info_dsp
+.text
+	.align 2
+_c2d8_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2d8_info:
+Lc2d8:
+	call 1f
+1:	popl	%eax
+	addl $40,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2dk
+Lc2dj:
+	movl 3(%esi),%ecx
+	movl 7(%esi),%edx
+	movl %eax,64(%esp)
+	movl L_stg_ap_2_upd_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-36(%edi)
+	movl 4(%ebp),%eax
+	movl %eax,-24(%edi)
+	movl %ecx,-20(%edi)
+	movl 64(%esp),%eax
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	leal -36(%edi),%ecx
+	movl %ecx,-12(%edi)
+	movl %edx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2dk:
+	movl $40,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2d8_info - _c2d8_info_dsp
+.text
+	.align 2
+_c2do_entry:
+Lc2do:
+	call 1f
+1:	popl	%eax
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	jmp *(%ebp)
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfAlternativeParserzuzdsap_closure
+_Parsing_zdfAlternativeParserzuzdsap_closure:
+	.long	_Parsing_zdfAlternativeParserzuzdsap_info
+.text
+	.align 2
+_Parsing_zdfAlternativeParserzuzdsap_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfAlternativeParserzuzdsap_info
+_Parsing_zdfAlternativeParserzuzdsap_info:
+Lc2ee:
+	movl 24(%ebx),%eax
+	movl %eax,24(%ebx)
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfAlternativeParser2_info
+	.long  _Parsing_zdfAlternativeParserzuzdsap_info - _Parsing_zdfAlternativeParserzuzdsap_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfMonadParserzuzdszddmfail_closure
+_Parsing_zdfMonadParserzuzdszddmfail_closure:
+	.long	_Parsing_zdfMonadParserzuzdszddmfail_info
+	.long	0
+.text
+	.align 2
+_Parsing_zdfMonadParserzuzdszddmfail_info_dsp:
+.text
+	.align 2
+	.long	_S2ev_srt-(_Parsing_zdfMonadParserzuzdszddmfail_info)+0
+	.long	65541
+	.long	0
+	.long	65551
+.globl _Parsing_zdfMonadParserzuzdszddmfail_info
+_Parsing_zdfMonadParserzuzdszddmfail_info:
+Lc2es:
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _base_GHCziErr_error_info
+	.long  _Parsing_zdfMonadParserzuzdszddmfail_info - _Parsing_zdfMonadParserzuzdszddmfail_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_sat1_closure
+_Parsing_sat1_closure:
+	.long	_Parsing_sat1_info
+.text
+	.align 2
+_Parsing_sat1_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_sat1_info
+_Parsing_sat1_info:
+Lc2eX:
+	call 1f
+1:	popl	%eax
+	movl 16(%ebx),%ecx
+	movl 8(%ebx),%edx
+	movl %eax,64(%esp)
+	leal -12(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2eY
+Lc2eZ:
+	movl 64(%esp),%eax
+	addl $_c2eN_info-(1b)+0,%eax
+	movl %eax,-8(%ebp)
+	movl %ecx,%esi
+	movl %edx,-4(%ebp)
+	addl $-8,%ebp
+	testw $7,%si
+	jne _c2eN_info
+Lc2eO:
+	jmp *(%esi)
+Lc2eY:
+	movl %ecx,16(%ebx)
+	movl %edx,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_sat1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_sat1_info - _Parsing_sat1_info_dsp
+.text
+	.align 2
+_c2eN_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2eN_info:
+Lc2eN:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2eV
+Lu2fp:
+	addl $8,%ebp
+	jmp _c2fo_entry
+Lc2eV:
+	addl $_c2f5_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl 2(%esi),%eax
+	movl %eax,8(%ebx)
+	movl 6(%esi),%ecx
+	movl 4(%ebp),%esi
+	movl %ecx,(%ebp)
+	movl %eax,4(%ebp)
+	addl $-4,%ebp
+	jmp _stg_ap_p_fast
+	.long  _c2eN_info - _c2eN_info_dsp
+.text
+	.align 2
+_c2f5_info_dsp:
+.text
+	.align 2
+	.long	2
+	.long	32
+_c2f5_info:
+Lc2f5:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2fn
+Lu2fq:
+	addl $12,%ebp
+	jmp _c2fo_entry
+Lc2fn:
+	addl $20,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2fk
+Lc2fj:
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	movl 8(%ebp),%ecx
+	movl %ecx,-12(%edi)
+	movl 4(%ebp),%ecx
+	movl %ecx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $12,%ebp
+	jmp *(%ebp)
+Lc2fk:
+	movl $20,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2f5_info - _c2f5_info_dsp
+.text
+	.align 2
+_c2fo_entry:
+Lc2fo:
+	call 1f
+1:	popl	%eax
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	jmp *(%ebp)
+.data
+	.align 2
+.align 0
+.globl _Parsing_sat_closure
+_Parsing_sat_closure:
+	.long	_Parsing_sat_info
+.text
+	.align 2
+_Parsing_sat_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_sat_info
+_Parsing_sat_info:
+Lc2g1:
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_sat1_info
+	.long  _Parsing_sat_info - _Parsing_sat_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_digit1_closure
+_Parsing_digit1_closure:
+	.long	_Parsing_digit1_info
+.text
+	.align 2
+_Parsing_digit1_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	0
+	.long	15
+.globl _Parsing_digit1_info
+_Parsing_digit1_info:
+Lc2gL:
+	call 1f
+1:	popl	%eax
+	movl 8(%ebx),%ecx
+	leal -8(%ebp),%edx
+	cmpl 840(%ebx),%edx
+	jb Lc2gM
+Lc2gN:
+	addl $_c2gB_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl %ecx,%esi
+	addl $-4,%ebp
+	testw $7,%si
+	jne _c2gB_info
+Lc2gC:
+	jmp *(%esi)
+Lc2gM:
+	movl %ecx,8(%ebx)
+	movl L_Parsing_digit1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_digit1_info - _Parsing_digit1_info_dsp
+.text
+	.align 2
+_c2gB_info_dsp:
+.text
+	.align 2
+	.long	0
+	.long	32
+_c2gB_info:
+Lc2gB:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2gJ
+Lc2gK:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $4,%ebp
+	jmp *(%ebp)
+Lc2gJ:
+	addl $_c2gT_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl 6(%esi),%eax
+	movl 2(%esi),%esi
+	movl %eax,(%ebp)
+	addl $-4,%ebp
+	testw $7,%si
+	jne _c2gT_info
+Lc2gV:
+	jmp *(%esi)
+	.long  _c2gB_info - _c2gB_info_dsp
+.text
+	.align 2
+_c2gT_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2gT_info:
+Lc2gT:
+	call 1f
+1:	popl	%eax
+	addl $20,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2h1
+Lc2h0:
+	movl 3(%esi),%ecx
+	addl $-48,%ecx
+	cmpl $9,%ecx
+	jbe Lc2hn
+Lc2ho:
+	addl $-20,%edi
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2h1:
+	movl $20,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+Lc2hn:
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	movl %esi,-12(%edi)
+	movl 4(%ebp),%ecx
+	movl %ecx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+	.long  _c2gT_info - _c2gT_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_digit_closure
+_Parsing_digit_closure:
+	.long	_Parsing_digit_info
+.text
+	.align 2
+_Parsing_digit_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	0
+	.long	15
+.globl _Parsing_digit_info
+_Parsing_digit_info:
+Lc2hV:
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_digit1_info
+	.long  _Parsing_digit_info - _Parsing_digit_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_char1_closure
+_Parsing_char1_closure:
+	.long	_Parsing_char1_info
+.text
+	.align 2
+_Parsing_char1_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_char1_info
+_Parsing_char1_info:
+Lc2iy:
+	call 1f
+1:	popl	%eax
+	movl 16(%ebx),%ecx
+	movl 8(%ebx),%edx
+	movl %eax,64(%esp)
+	leal -16(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2iz
+Lc2iA:
+	movl 64(%esp),%eax
+	addl $_c2io_info-(1b)+0,%eax
+	movl %eax,-8(%ebp)
+	movl %ecx,%esi
+	movl %edx,-4(%ebp)
+	addl $-8,%ebp
+	testw $7,%si
+	jne _c2io_info
+Lc2ip:
+	jmp *(%esi)
+Lc2iz:
+	movl %ecx,16(%ebx)
+	movl %edx,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_char1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_char1_info - _Parsing_char1_info_dsp
+.text
+	.align 2
+_c2io_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2io_info:
+Lc2io:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2iw
+Lc2ix:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2iw:
+	addl $_c2iG_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl 6(%esi),%eax
+	movl 2(%esi),%esi
+	movl %eax,(%ebp)
+	addl $-4,%ebp
+	testw $7,%si
+	jne _c2iG_info
+Lc2iH:
+	jmp *(%esi)
+	.long  _c2io_info - _c2io_info_dsp
+.text
+	.align 2
+_c2iG_info_dsp:
+.text
+	.align 2
+	.long	2
+	.long	32
+_c2iG_info:
+Lc2iG:
+	call 1f
+1:	popl	%eax
+	addl $_c2iL_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl %esi,%eax
+	movl 3(%esi),%ecx
+	movl 8(%ebp),%esi
+	movl %ecx,(%ebp)
+	movl %eax,8(%ebp)
+	addl $-4,%ebp
+	testw $7,%si
+	jne _c2iL_info
+Lc2iO:
+	jmp *(%esi)
+	.long  _c2iG_info - _c2iG_info_dsp
+.text
+	.align 2
+_c2iL_info_dsp:
+.text
+	.align 2
+	.long	67
+	.long	32
+_c2iL_info:
+Lc2iL:
+	call 1f
+1:	popl	%eax
+	addl $20,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2iU
+Lc2iT:
+	movl 4(%ebp),%ecx
+	cmpl 3(%esi),%ecx
+	je Lc2j7
+Lc2j8:
+	addl $-20,%edi
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $16,%ebp
+	jmp *(%ebp)
+Lc2iU:
+	movl $20,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+Lc2j7:
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	movl 12(%ebp),%ecx
+	movl %ecx,-12(%edi)
+	movl 8(%ebp),%ecx
+	movl %ecx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $16,%ebp
+	jmp *(%ebp)
+	.long  _c2iL_info - _c2iL_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_char_closure
+_Parsing_char_closure:
+	.long	_Parsing_char_info
+.text
+	.align 2
+_Parsing_char_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_char_info
+_Parsing_char_info:
+Lc2jL:
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_char1_info
+	.long  _Parsing_char_info - _Parsing_char_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zgztzg_closure
+_Parsing_zgztzg_closure:
+	.long	_Parsing_zgztzg_info
+.text
+	.align 2
+_Parsing_zgztzg_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zgztzg_info
+_Parsing_zgztzg_info:
+Lc2jY:
+	movl 24(%ebx),%eax
+	movl %eax,24(%ebx)
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfMonadParser1_info
+	.long  _Parsing_zgztzg_info - _Parsing_zgztzg_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zpzpzp_closure
+_Parsing_zpzpzp_closure:
+	.long	_Parsing_zpzpzp_info
+.text
+	.align 2
+_Parsing_zpzpzp_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zpzpzp_info
+_Parsing_zpzpzp_info:
+Lc2kc:
+	movl 24(%ebx),%eax
+	movl %eax,24(%ebx)
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfAlternativeParser1_info
+	.long  _Parsing_zpzpzp_info - _Parsing_zpzpzp_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_item_closure
+_Parsing_item_closure:
+	.long	_Parsing_item_info
+.text
+	.align 2
+_Parsing_item_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	0
+	.long	15
+.globl _Parsing_item_info
+_Parsing_item_info:
+Lc2kq:
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_item1_info
+	.long  _Parsing_item_info - _Parsing_item_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_success_closure
+_Parsing_success_closure:
+	.long	_Parsing_success_info
+.text
+	.align 2
+_Parsing_success_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_success_info
+_Parsing_success_info:
+Lc2kC:
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfAlternativeParser4_info
+	.long  _Parsing_success_info - _Parsing_success_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_failure_closure
+_Parsing_failure_closure:
+	.long	_Parsing_failure_info
+.text
+	.align 2
+_Parsing_failure_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	0
+	.long	15
+.globl _Parsing_failure_info
+_Parsing_failure_info:
+Lc2kP:
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_failure1_info
+	.long  _Parsing_failure_info - _Parsing_failure_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_readsP_closure
+_Parsing_readsP_closure:
+	.long	_Parsing_readsP_info
+.text
+	.align 2
+_s25O_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	17
+_s25O_info:
+Lc2lb:
+	call 1f
+1:	popl	%eax
+	leal -20(%ebp),%ecx
+	cmpl 840(%ebx),%ecx
+	jb Lc2lc
+Lc2ld:
+	movl L_stg_upd_frame_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-12(%ebp)
+	movl %esi,-8(%ebp)
+	movl 12(%esi),%ecx
+	movl %ecx,8(%ebx)
+	movl L_stg_ap_p_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-20(%ebp)
+	movl L_base_TextziParserCombinatorsziReadPrec_minPrec_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-16(%ebp)
+	addl $-20,%ebp
+	jmp _base_GHCziRead_readsPrec_info
+Lc2lc:
+	jmp *-16(%ebx)
+	.long  _s25O_info - _s25O_info_dsp
+.text
+	.align 2
+_s25T_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	1
+	.long	10
+_s25T_info:
+Lc2ls:
+	call 1f
+1:	popl	%eax
+	movl 8(%ebx),%ecx
+	leal -4(%ebp),%edx
+	cmpl 840(%ebx),%edx
+	jb Lc2lt
+Lc2lu:
+	addl $_c2lj_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl %ecx,8(%ebx)
+	movl 3(%esi),%esi
+	addl $-4,%ebp
+	jmp _stg_ap_p_fast
+Lc2lt:
+	movl %ecx,8(%ebx)
+	jmp *-8(%ebx)
+	.long  _s25T_info - _s25T_info_dsp
+.text
+	.align 2
+_c2lj_info_dsp:
+.text
+	.align 2
+	.long	0
+	.long	32
+_c2lj_info:
+Lc2lj:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2lq
+Lc2lr:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $4,%ebp
+	jmp *(%ebp)
+Lc2lq:
+	addl $8,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2lD
+Lc2lC:
+	movl 2(%esi),%ecx
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	movl %ecx,(%edi)
+	leal -2(%edi),%esi
+	addl $4,%ebp
+	jmp *(%ebp)
+Lc2lD:
+	movl $8,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2lj_info - _c2lj_info_dsp
+.text
+	.align 2
+_Parsing_readsP_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	0
+	.long	15
+.globl _Parsing_readsP_info
+_Parsing_readsP_info:
+Lc2lE:
+	call 1f
+1:	popl	%eax
+	addl $24,%edi
+	movl 8(%ebx),%ecx
+	cmpl 856(%ebx),%edi
+	ja Lc2lI
+Lc2lH:
+	movl %eax,%edx
+	addl $_s25O_info-(1b)+0,%edx
+	movl %edx,-20(%edi)
+	movl %ecx,-8(%edi)
+	addl $_s25T_info-(1b)+0,%eax
+	movl %eax,-4(%edi)
+	leal -20(%edi),%eax
+	movl %eax,(%edi)
+	leal -3(%edi),%esi
+	jmp *(%ebp)
+Lc2lI:
+	movl $24,904(%ebx)
+	movl %ecx,8(%ebx)
+	movl L_Parsing_readsP_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_readsP_info - _Parsing_readsP_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_parse_closure
+_Parsing_parse_closure:
+	.long	_Parsing_parse_info
+.text
+	.align 2
+_Parsing_parse_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_parse_info
+_Parsing_parse_info:
+Lc2mi:
+	movl 8(%ebx),%eax
+	movl 16(%ebx),%ecx
+	movl %ecx,8(%ebx)
+	movl %eax,%esi
+	jmp _stg_ap_p_fast
+	.long  _Parsing_parse_info - _Parsing_parse_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfFunctorParser1_closure
+_Parsing_zdfFunctorParser1_closure:
+	.long	_Parsing_zdfFunctorParser1_info
+.text
+	.align 2
+_Parsing_zdfFunctorParser1_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfFunctorParser1_info
+_Parsing_zdfFunctorParser1_info:
+Lc2mK:
+	call 1f
+1:	popl	%eax
+	movl 24(%ebx),%ecx
+	movl 16(%ebx),%edx
+	movl %eax,64(%esp)
+	movl 8(%ebx),%eax
+	movl %eax,76(%esp)
+	leal -8(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2mL
+Lc2mM:
+	movl 64(%esp),%eax
+	addl $_c2mB_info-(1b)+0,%eax
+	movl %eax,-8(%ebp)
+	movl %ecx,8(%ebx)
+	movl %edx,%esi
+	movl 76(%esp),%eax
+	movl %eax,-4(%ebp)
+	addl $-8,%ebp
+	jmp _stg_ap_p_fast
+Lc2mL:
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zdfFunctorParser1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zdfFunctorParser1_info - _Parsing_zdfFunctorParser1_info_dsp
+.text
+	.align 2
+_c2mB_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2mB_info:
+Lc2mB:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2mI
+Lc2mJ:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2mI:
+	addl $_c2mS_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2mS_info
+Lc2mT:
+	jmp *(%esi)
+	.long  _c2mB_info - _c2mB_info_dsp
+.text
+	.align 2
+_c2mS_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2mS_info:
+Lc2mS:
+	call 1f
+1:	popl	%eax
+	addl $20,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2n2
+Lc2n1:
+	movl 7(%esi),%ecx
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%edx
+	movl %edx,-16(%edi)
+	movl 4(%ebp),%edx
+	movl %edx,-12(%edi)
+	movl %ecx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2n2:
+	movl $20,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2mS_info - _c2mS_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfFunctorParserzuzdczlzd_closure
+_Parsing_zdfFunctorParserzuzdczlzd_closure:
+	.long	_Parsing_zdfFunctorParserzuzdczlzd_info
+.text
+	.align 2
+_Parsing_zdfFunctorParserzuzdczlzd_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfFunctorParserzuzdczlzd_info
+_Parsing_zdfFunctorParserzuzdczlzd_info:
+Lc2nv:
+	movl 24(%ebx),%eax
+	movl %eax,24(%ebx)
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfFunctorParser1_info
+	.long  _Parsing_zdfFunctorParserzuzdczlzd_info - _Parsing_zdfFunctorParserzuzdczlzd_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdwa_closure
+_Parsing_zdwa_closure:
+	.long	_Parsing_zdwa_info
+.text
+	.align 2
+_Parsing_zdwa_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_zdwa_info
+_Parsing_zdwa_info:
+Lc2o5:
+	call 1f
+1:	popl	%eax
+	movl 16(%ebx),%ecx
+	movl 8(%ebx),%edx
+	movl %eax,64(%esp)
+	leal -12(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2o6
+Lc2o7:
+	movl 64(%esp),%eax
+	addl $_c2nW_info-(1b)+0,%eax
+	movl %eax,-12(%ebp)
+	movl %ecx,8(%ebx)
+	movl %edx,%esi
+	movl %edx,-8(%ebp)
+	movl %ecx,-4(%ebp)
+	addl $-12,%ebp
+	jmp _stg_ap_p_fast
+Lc2o6:
+	movl %ecx,16(%ebx)
+	movl %edx,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zdwa_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zdwa_info - _Parsing_zdwa_info_dsp
+.text
+	.align 2
+_c2nW_info_dsp:
+.text
+	.align 2
+	.long	2
+	.long	32
+_c2nW_info:
+Lc2nW:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2o3
+Lc2o4:
+	addl $12,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2od
+Lc2oc:
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-8(%edi)
+	movl L_ghczmprim_GHCziTypes_ZMZN_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	incl %eax
+	movl %eax,-4(%edi)
+	movl 8(%ebp),%eax
+	movl %eax,(%edi)
+	leal -7(%edi),%esi
+	addl $12,%ebp
+	jmp *(%ebp)
+Lc2o3:
+	addl $_c2og_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2og_info
+Lc2oh:
+	jmp *(%esi)
+Lc2od:
+	movl $12,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2nW_info - _c2nW_info_dsp
+.text
+	.align 2
+_c2og_info_dsp:
+.text
+	.align 2
+	.long	130
+	.long	32
+_c2og_info:
+Lc2og:
+	call 1f
+1:	popl	%eax
+	movl 4(%ebp),%ecx
+	addl $_c2ol_info-(1b)+0,%eax
+	movl %eax,4(%ebp)
+	movl 7(%esi),%eax
+	movl %eax,16(%ebx)
+	movl %ecx,8(%ebx)
+	movl 3(%esi),%eax
+	movl %eax,8(%ebp)
+	addl $4,%ebp
+	jmp _Parsing_zdwa_info
+	.long  _c2og_info - _c2og_info_dsp
+.text
+	.align 2
+_c2ol_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2ol_info:
+Lc2ol:
+	call 1f
+1:	popl	%eax
+	addl $_c2on_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	testw $7,%si
+	jne _c2on_info
+Lc2oo:
+	jmp *(%esi)
+	.long  _c2ol_info - _c2ol_info_dsp
+.text
+	.align 2
+_c2on_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2on_info:
+Lc2on:
+	call 1f
+1:	popl	%eax
+	addl $24,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2oz
+Lc2oy:
+	movl 3(%esi),%ecx
+	movl 7(%esi),%edx
+	movl %eax,64(%esp)
+	movl L_ghczmprim_GHCziTypes_ZC_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-20(%edi)
+	movl 4(%ebp),%eax
+	movl %eax,-16(%edi)
+	movl %ecx,-12(%edi)
+	movl 64(%esp),%eax
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-8(%edi)
+	leal -18(%edi),%eax
+	movl %eax,-4(%edi)
+	movl %edx,(%edi)
+	leal -7(%edi),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2oz:
+	movl $24,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2on_info - _c2on_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zzeroOrMore1_closure
+_Parsing_zzeroOrMore1_closure:
+	.long	_Parsing_zzeroOrMore1_info
+.text
+	.align 2
+_Parsing_zzeroOrMore1_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_zzeroOrMore1_info
+_Parsing_zzeroOrMore1_info:
+Lc2pl:
+	call 1f
+1:	popl	%eax
+	movl 16(%ebx),%ecx
+	movl 8(%ebx),%edx
+	movl %eax,64(%esp)
+	leal -4(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2pm
+Lc2pn:
+	movl 64(%esp),%eax
+	addl $_c2pi_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl %ecx,16(%ebx)
+	movl %edx,8(%ebx)
+	addl $-4,%ebp
+	jmp _Parsing_zdwa_info
+Lc2pm:
+	movl %ecx,16(%ebx)
+	movl %edx,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zzeroOrMore1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zzeroOrMore1_info - _Parsing_zzeroOrMore1_info_dsp
+.text
+	.align 2
+_c2pi_info_dsp:
+.text
+	.align 2
+	.long	0
+	.long	32
+_c2pi_info:
+Lc2pi:
+	call 1f
+1:	popl	%eax
+	addl $8,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2pq
+Lc2pp:
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	movl %esi,(%edi)
+	leal -2(%edi),%esi
+	addl $4,%ebp
+	jmp *(%ebp)
+Lc2pq:
+	movl $8,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2pi_info - _c2pi_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zzeroOrMore_closure
+_Parsing_zzeroOrMore_closure:
+	.long	_Parsing_zzeroOrMore_info
+.text
+	.align 2
+_Parsing_zzeroOrMore_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_zzeroOrMore_info
+_Parsing_zzeroOrMore_info:
+Lc2pH:
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zzeroOrMore1_info
+	.long  _Parsing_zzeroOrMore_info - _Parsing_zzeroOrMore_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_oneOrMore1_closure
+_Parsing_oneOrMore1_closure:
+	.long	_Parsing_oneOrMore1_info
+.text
+	.align 2
+_Parsing_oneOrMore1_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_oneOrMore1_info
+_Parsing_oneOrMore1_info:
+Lc2qe:
+	call 1f
+1:	popl	%eax
+	movl 16(%ebx),%ecx
+	movl 8(%ebx),%edx
+	movl %eax,64(%esp)
+	leal -8(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2qf
+Lc2qg:
+	movl 64(%esp),%eax
+	addl $_c2q5_info-(1b)+0,%eax
+	movl %eax,-8(%ebp)
+	movl %ecx,8(%ebx)
+	movl %edx,%esi
+	movl %edx,-4(%ebp)
+	addl $-8,%ebp
+	jmp _stg_ap_p_fast
+Lc2qf:
+	movl %ecx,16(%ebx)
+	movl %edx,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_oneOrMore1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_oneOrMore1_info - _Parsing_oneOrMore1_info_dsp
+.text
+	.align 2
+_c2q5_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2q5_info:
+Lc2q5:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2qc
+Lc2qd:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2qc:
+	addl $_c2qm_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2qm_info
+Lc2qn:
+	jmp *(%esi)
+	.long  _c2q5_info - _c2q5_info_dsp
+.text
+	.align 2
+_c2qm_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2qm_info:
+Lc2qm:
+	call 1f
+1:	popl	%eax
+	addl $_c2qr_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 7(%esi),%eax
+	movl %eax,16(%ebx)
+	movl 4(%ebp),%eax
+	movl %eax,8(%ebx)
+	movl 3(%esi),%eax
+	movl %eax,4(%ebp)
+	jmp _Parsing_zdwa_info
+	.long  _c2qm_info - _c2qm_info_dsp
+.text
+	.align 2
+_c2qr_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2qr_info:
+Lc2qr:
+	call 1f
+1:	popl	%eax
+	addl $_c2qt_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	testw $7,%si
+	jne _c2qt_info
+Lc2qu:
+	jmp *(%esi)
+	.long  _c2qr_info - _c2qr_info_dsp
+.text
+	.align 2
+_c2qt_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2qt_info:
+Lc2qt:
+	call 1f
+1:	popl	%eax
+	addl $32,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2qG
+Lc2qF:
+	movl 3(%esi),%ecx
+	movl 7(%esi),%edx
+	movl %eax,64(%esp)
+	movl L_ghczmprim_GHCziTypes_ZC_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-28(%edi)
+	movl 4(%ebp),%eax
+	movl %eax,-24(%edi)
+	movl %ecx,-20(%edi)
+	movl 64(%esp),%eax
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	leal -26(%edi),%ecx
+	movl %ecx,-12(%edi)
+	movl %edx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2qG:
+	movl $32,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2qt_info - _c2qt_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_oneOrMore_closure
+_Parsing_oneOrMore_closure:
+	.long	_Parsing_oneOrMore_info
+.text
+	.align 2
+_Parsing_oneOrMore_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_oneOrMore_info
+_Parsing_oneOrMore_info:
+Lc2rp:
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_oneOrMore1_info
+	.long  _Parsing_oneOrMore_info - _Parsing_oneOrMore_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfFunctorParser_closure
+_Parsing_zdfFunctorParser_closure:
+	.long	_base_GHCziBase_DZCFunctor_static_info
+	.long	_Parsing_zdfAlternativeParser3_closure+3
+	.long	_Parsing_zdfFunctorParser1_closure+3
+	.long	1
+.data
+	.align 2
+.align 0
+.globl _Parsing_zlZCzg1_closure
+_Parsing_zlZCzg1_closure:
+	.long	_Parsing_zlZCzg1_info
+.text
+	.align 2
+_Parsing_zlZCzg1_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zlZCzg1_info
+_Parsing_zlZCzg1_info:
+Lc2s1:
+	call 1f
+1:	popl	%eax
+	movl 24(%ebx),%ecx
+	movl 16(%ebx),%edx
+	movl %eax,64(%esp)
+	movl 8(%ebx),%eax
+	movl %eax,76(%esp)
+	leal -8(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2s2
+Lc2s3:
+	movl 64(%esp),%eax
+	addl $_c2rS_info-(1b)+0,%eax
+	movl %eax,-8(%ebp)
+	movl %ecx,8(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,%esi
+	movl %edx,-4(%ebp)
+	addl $-8,%ebp
+	jmp _stg_ap_p_fast
+Lc2s2:
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zlZCzg1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zlZCzg1_info - _Parsing_zlZCzg1_info_dsp
+.text
+	.align 2
+_c2rS_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2rS_info:
+Lc2rS:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2rZ
+Lu2sG:
+	addl $8,%ebp
+	jmp _c2sF_entry
+Lc2rZ:
+	addl $_c2s9_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2s9_info
+Lc2sb:
+	jmp *(%esi)
+	.long  _c2rS_info - _c2rS_info_dsp
+.text
+	.align 2
+_c2s9_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2s9_info:
+Lc2s9:
+	call 1f
+1:	popl	%eax
+	addl $_c2sf_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 7(%esi),%eax
+	movl %eax,8(%ebx)
+	movl 3(%esi),%eax
+	movl 4(%ebp),%esi
+	movl %eax,4(%ebp)
+	jmp _stg_ap_p_fast
+	.long  _c2s9_info - _c2s9_info_dsp
+.text
+	.align 2
+_c2sf_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2sf_info:
+Lc2sf:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2sE
+Lu2sH:
+	addl $8,%ebp
+	jmp _c2sF_entry
+Lc2sE:
+	addl $_c2sp_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2sp_info
+Lc2sq:
+	jmp *(%esi)
+	.long  _c2sf_info - _c2sf_info_dsp
+.text
+	.align 2
+_c2sp_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2sp_info:
+Lc2sp:
+	call 1f
+1:	popl	%eax
+	addl $32,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2sB
+Lc2sA:
+	movl 3(%esi),%ecx
+	movl 7(%esi),%edx
+	movl %eax,64(%esp)
+	movl L_ghczmprim_GHCziTypes_ZC_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-28(%edi)
+	movl 4(%ebp),%eax
+	movl %eax,-24(%edi)
+	movl %ecx,-20(%edi)
+	movl 64(%esp),%eax
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	leal -26(%edi),%ecx
+	movl %ecx,-12(%edi)
+	movl %edx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2sB:
+	movl $32,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2sp_info - _c2sp_info_dsp
+.text
+	.align 2
+_c2sF_entry:
+Lc2sF:
+	call 1f
+1:	popl	%eax
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	jmp *(%ebp)
+.data
+	.align 2
+.align 0
+.globl _Parsing_zlZCzg_closure
+_Parsing_zlZCzg_closure:
+	.long	_Parsing_zlZCzg_info
+.text
+	.align 2
+_Parsing_zlZCzg_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zlZCzg_info
+_Parsing_zlZCzg_info:
+Lc2tv:
+	movl 24(%ebx),%eax
+	movl %eax,24(%ebx)
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zlZCzg1_info
+	.long  _Parsing_zlZCzg_info - _Parsing_zlZCzg_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfApplicativeParser2_closure
+_Parsing_zdfApplicativeParser2_closure:
+	.long	_Parsing_zdfApplicativeParser2_info
+.text
+	.align 2
+_s271_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	1
+	.long	10
+_s271_info:
+Lc2u5:
+	call 1f
+1:	popl	%eax
+	movl 8(%ebx),%ecx
+	leal -4(%ebp),%edx
+	cmpl 840(%ebx),%edx
+	jb Lc2u6
+Lc2u7:
+	addl $_c2tW_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl %ecx,8(%ebx)
+	movl 3(%esi),%esi
+	addl $-4,%ebp
+	jmp _stg_ap_p_fast
+Lc2u6:
+	movl %ecx,8(%ebx)
+	jmp *-8(%ebx)
+	.long  _s271_info - _s271_info_dsp
+.text
+	.align 2
+_c2tW_info_dsp:
+.text
+	.align 2
+	.long	0
+	.long	32
+_c2tW_info:
+Lc2tW:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2u3
+Lc2u4:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $4,%ebp
+	jmp *(%ebp)
+Lc2u3:
+	addl $_c2ud_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2ud_info
+Lc2ue:
+	jmp *(%esi)
+	.long  _c2tW_info - _c2tW_info_dsp
+.text
+	.align 2
+_c2ud_info_dsp:
+.text
+	.align 2
+	.long	0
+	.long	32
+_c2ud_info:
+Lc2ud:
+	call 1f
+1:	popl	%eax
+	addl $20,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2un
+Lc2um:
+	movl 7(%esi),%ecx
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%edx
+	movl %edx,-16(%edi)
+	movl L_base_GHCziBase_id_closure$non_lazy_ptr-(1b)+0(%eax),%edx
+	incl %edx
+	movl %edx,-12(%edi)
+	movl %ecx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $4,%ebp
+	jmp *(%ebp)
+Lc2un:
+	movl $20,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2ud_info - _c2ud_info_dsp
+.text
+	.align 2
+_Parsing_zdfApplicativeParser2_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfApplicativeParser2_info
+_Parsing_zdfApplicativeParser2_info:
+Lc2up:
+	call 1f
+1:	popl	%eax
+	addl $8,%edi
+	movl 24(%ebx),%ecx
+	movl 16(%ebx),%edx
+	movl %eax,64(%esp)
+	movl 8(%ebx),%eax
+	cmpl 856(%ebx),%edi
+	ja Lc2ut
+Lc2us:
+	movl %eax,76(%esp)
+	movl 64(%esp),%eax
+	addl $_s271_info-(1b)+0,%eax
+	movl %eax,-4(%edi)
+	movl 76(%esp),%eax
+	movl %eax,(%edi)
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	leal -3(%edi),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfAlternativeParser2_info
+Lc2ut:
+	movl $8,904(%ebx)
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	movl %eax,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zdfApplicativeParser2_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zdfApplicativeParser2_info - _Parsing_zdfApplicativeParser2_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfApplicativeParserzuzdcztzg_closure
+_Parsing_zdfApplicativeParserzuzdcztzg_closure:
+	.long	_Parsing_zdfApplicativeParserzuzdcztzg_info
+.text
+	.align 2
+_Parsing_zdfApplicativeParserzuzdcztzg_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfApplicativeParserzuzdcztzg_info
+_Parsing_zdfApplicativeParserzuzdcztzg_info:
+Lc2v2:
+	movl 24(%ebx),%eax
+	movl %eax,24(%ebx)
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfApplicativeParser2_info
+	.long  _Parsing_zdfApplicativeParserzuzdcztzg_info - _Parsing_zdfApplicativeParserzuzdcztzg_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_chain1_closure
+_Parsing_chain1_closure:
+	.long	_Parsing_chain1_info
+.text
+	.align 2
+_s27a_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	2
+	.long	12
+_s27a_info:
+Lc2vH:
+	movl 8(%ebx),%eax
+	movl %eax,24(%ebx)
+	movl 3(%esi),%eax
+	movl %eax,16(%ebx)
+	movl 7(%esi),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfApplicativeParser2_info
+	.long  _s27a_info - _s27a_info_dsp
+.text
+	.align 2
+_Parsing_chain1_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_chain1_info
+_Parsing_chain1_info:
+Lc2vR:
+	call 1f
+1:	popl	%eax
+	movl 24(%ebx),%ecx
+	movl 16(%ebx),%edx
+	movl %eax,64(%esp)
+	movl 8(%ebx),%eax
+	movl %eax,76(%esp)
+	leal -12(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2vS
+Lc2vT:
+	movl 64(%esp),%eax
+	addl $_c2vs_info-(1b)+0,%eax
+	movl %eax,-12(%ebp)
+	movl %ecx,8(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,%esi
+	movl %eax,-8(%ebp)
+	movl %edx,-4(%ebp)
+	addl $-12,%ebp
+	jmp _stg_ap_p_fast
+Lc2vS:
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	movl 76(%esp),%eax
+	movl %eax,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_chain1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_chain1_info - _Parsing_chain1_info_dsp
+.text
+	.align 2
+_c2vs_info_dsp:
+.text
+	.align 2
+	.long	2
+	.long	32
+_c2vs_info:
+Lc2vs:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2vP
+Lc2vQ:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $12,%ebp
+	jmp *(%ebp)
+Lc2vP:
+	addl $_c2vx_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2vx_info
+Lc2vy:
+	jmp *(%esi)
+	.long  _c2vs_info - _c2vs_info_dsp
+.text
+	.align 2
+_c2vx_info_dsp:
+.text
+	.align 2
+	.long	2
+	.long	32
+_c2vx_info:
+Lc2vx:
+	call 1f
+1:	popl	%eax
+	addl $12,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2w9
+Lc2w8:
+	movl 3(%esi),%ecx
+	movl 7(%esi),%edx
+	movl %eax,64(%esp)
+	addl $_s27a_info-(1b)+0,%eax
+	movl %eax,-8(%edi)
+	movl 4(%ebp),%eax
+	movl %eax,-4(%edi)
+	movl 8(%ebp),%eax
+	movl %eax,(%edi)
+	movl 64(%esp),%eax
+	addl $_c2vW_info-(1b)+0,%eax
+	movl %eax,4(%ebp)
+	movl %edx,16(%ebx)
+	leal -7(%edi),%eax
+	movl %eax,8(%ebx)
+	movl %ecx,8(%ebp)
+	addl $4,%ebp
+	jmp _Parsing_zdwa_info
+Lc2w9:
+	movl $12,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2vx_info - _c2vx_info_dsp
+.text
+	.align 2
+_c2vW_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2vW_info:
+Lc2vW:
+	call 1f
+1:	popl	%eax
+	addl $_c2vY_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	testw $7,%si
+	jne _c2vY_info
+Lc2vZ:
+	jmp *(%esi)
+	.long  _c2vW_info - _c2vW_info_dsp
+.text
+	.align 2
+_c2vY_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2vY_info:
+Lc2vY:
+	call 1f
+1:	popl	%eax
+	addl $32,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2wd
+Lc2wc:
+	movl 3(%esi),%ecx
+	movl 7(%esi),%edx
+	movl %eax,64(%esp)
+	movl L_ghczmprim_GHCziTypes_ZC_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-28(%edi)
+	movl 4(%ebp),%eax
+	movl %eax,-24(%edi)
+	movl %ecx,-20(%edi)
+	movl 64(%esp),%eax
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	leal -26(%edi),%ecx
+	movl %ecx,-12(%edi)
+	movl %edx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2wd:
+	movl $32,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2vY_info - _c2vY_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_chain_closure
+_Parsing_chain_closure:
+	.long	_Parsing_chain_info
+.text
+	.align 2
+_Parsing_chain_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_chain_info
+_Parsing_chain_info:
+Lc2x3:
+	movl 24(%ebx),%eax
+	movl %eax,24(%ebx)
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_chain1_info
+	.long  _Parsing_chain_info - _Parsing_chain_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfApplicativeParser1_closure
+_Parsing_zdfApplicativeParser1_closure:
+	.long	_Parsing_zdfApplicativeParser1_info
+.text
+	.align 2
+_s27s_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	1
+	.long	10
+_s27s_info:
+Lc2xJ:
+	movl 3(%esi),%esi
+	jmp _stg_ap_0_fast
+	.long  _s27s_info - _s27s_info_dsp
+.text
+	.align 2
+_s27u_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	1
+	.long	10
+_s27u_info:
+Lc2xT:
+	call 1f
+1:	popl	%eax
+	movl 8(%ebx),%ecx
+	leal -4(%ebp),%edx
+	cmpl 840(%ebx),%edx
+	jb Lc2xU
+Lc2xV:
+	addl $_c2xu_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl %ecx,8(%ebx)
+	movl 3(%esi),%esi
+	addl $-4,%ebp
+	jmp _stg_ap_p_fast
+Lc2xU:
+	movl %ecx,8(%ebx)
+	jmp *-8(%ebx)
+	.long  _s27u_info - _s27u_info_dsp
+.text
+	.align 2
+_c2xu_info_dsp:
+.text
+	.align 2
+	.long	0
+	.long	32
+_c2xu_info:
+Lc2xu:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2xR
+Lc2xS:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $4,%ebp
+	jmp *(%ebp)
+Lc2xR:
+	addl $_c2xz_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2xz_info
+Lc2xA:
+	jmp *(%esi)
+	.long  _c2xu_info - _c2xu_info_dsp
+.text
+	.align 2
+_c2xz_info_dsp:
+.text
+	.align 2
+	.long	0
+	.long	32
+_c2xz_info:
+Lc2xz:
+	call 1f
+1:	popl	%eax
+	addl $28,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2y3
+Lc2y2:
+	movl 3(%esi),%ecx
+	movl 7(%esi),%edx
+	movl %eax,64(%esp)
+	addl $_s27s_info-(1b)+0,%eax
+	movl %eax,-24(%edi)
+	movl %ecx,-20(%edi)
+	movl 64(%esp),%eax
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	leal -23(%edi),%ecx
+	movl %ecx,-12(%edi)
+	movl %edx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $4,%ebp
+	jmp *(%ebp)
+Lc2y3:
+	movl $28,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2xz_info - _c2xz_info_dsp
+.text
+	.align 2
+_Parsing_zdfApplicativeParser1_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfApplicativeParser1_info
+_Parsing_zdfApplicativeParser1_info:
+Lc2y5:
+	call 1f
+1:	popl	%eax
+	addl $8,%edi
+	movl 24(%ebx),%ecx
+	movl 16(%ebx),%edx
+	movl %eax,64(%esp)
+	movl 8(%ebx),%eax
+	cmpl 856(%ebx),%edi
+	ja Lc2y9
+Lc2y8:
+	movl %eax,76(%esp)
+	movl 64(%esp),%eax
+	addl $_s27u_info-(1b)+0,%eax
+	movl %eax,-4(%edi)
+	movl 76(%esp),%eax
+	movl %eax,(%edi)
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	leal -3(%edi),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfAlternativeParser2_info
+Lc2y9:
+	movl $8,904(%ebx)
+	movl %ecx,24(%ebx)
+	movl %edx,16(%ebx)
+	movl %eax,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zdfApplicativeParser1_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zdfApplicativeParser1_info - _Parsing_zdfApplicativeParser1_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfApplicativeParserzuzdczlzt_closure
+_Parsing_zdfApplicativeParserzuzdczlzt_closure:
+	.long	_Parsing_zdfApplicativeParserzuzdczlzt_info
+.text
+	.align 2
+_Parsing_zdfApplicativeParserzuzdczlzt_info_dsp:
+.text
+	.align 2
+	.long	196631
+	.long	0
+	.long	15
+.globl _Parsing_zdfApplicativeParserzuzdczlzt_info
+_Parsing_zdfApplicativeParserzuzdczlzt_info:
+Lc2yL:
+	movl 24(%ebx),%eax
+	movl %eax,24(%ebx)
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _Parsing_zdfApplicativeParser1_info
+	.long  _Parsing_zdfApplicativeParserzuzdczlzt_info - _Parsing_zdfApplicativeParserzuzdczlzt_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfApplicativeParser_closure
+_Parsing_zdfApplicativeParser_closure:
+	.long	_base_GHCziBase_DZCApplicative_static_info
+	.long	_Parsing_zdfFunctorParser_closure+1
+	.long	_Parsing_zdfAlternativeParser4_closure+2
+	.long	_Parsing_zdfAlternativeParser2_closure+3
+	.long	_Parsing_zdfApplicativeParser2_closure+3
+	.long	_Parsing_zdfApplicativeParser1_closure+3
+	.long	1
+.data
+	.align 2
+.align 0
+_r1Vd_closure:
+	.long	_r1Vd_info
+.text
+	.align 2
+_s27x_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	1
+	.long	10
+_s27x_info:
+Lc2zw:
+	call 1f
+1:	popl	%eax
+	movl 8(%ebx),%ecx
+	leal -12(%ebp),%edx
+	cmpl 840(%ebx),%edx
+	jb Lc2zx
+Lc2zy:
+	addl $_c2zn_info-(1b)+0,%eax
+	movl %eax,-12(%ebp)
+	movl %ecx,8(%ebx)
+	movl %esi,%eax
+	movl 3(%esi),%esi
+	movl %eax,-8(%ebp)
+	movl %ecx,-4(%ebp)
+	addl $-12,%ebp
+	jmp _stg_ap_p_fast
+Lc2zx:
+	movl %ecx,8(%ebx)
+	jmp *-8(%ebx)
+	.long  _s27x_info - _s27x_info_dsp
+.text
+	.align 2
+_c2zn_info_dsp:
+.text
+	.align 2
+	.long	2
+	.long	32
+_c2zn_info:
+Lc2zn:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2zu
+Lc2zv:
+	addl $20,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2zF
+Lc2zE:
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	movl L_ghczmprim_GHCziTypes_ZMZN_closure$non_lazy_ptr-(1b)+0(%eax),%ecx
+	incl %ecx
+	movl %ecx,-12(%edi)
+	movl 8(%ebp),%ecx
+	movl %ecx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $12,%ebp
+	jmp *(%ebp)
+Lc2zu:
+	addl $_c2zI_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2zI_info
+Lc2zK:
+	jmp *(%esi)
+Lc2zF:
+	movl $20,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2zn_info - _c2zn_info_dsp
+.text
+	.align 2
+_c2zI_info_dsp:
+.text
+	.align 2
+	.long	2
+	.long	32
+_c2zI_info:
+Lc2zI:
+	call 1f
+1:	popl	%eax
+	addl $_c2zO_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 7(%esi),%eax
+	movl %eax,8(%ebx)
+	movl 3(%esi),%eax
+	movl 4(%ebp),%esi
+	movl %eax,4(%ebp)
+	jmp _s27x_info
+	.long  _c2zI_info - _c2zI_info_dsp
+.text
+	.align 2
+_c2zO_info_dsp:
+.text
+	.align 2
+	.long	2
+	.long	32
+_c2zO_info:
+Lc2zO:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2Ah
+Lc2Ai:
+	addl $20,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2zZ
+Lc2zY:
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	movl L_ghczmprim_GHCziTypes_ZMZN_closure$non_lazy_ptr-(1b)+0(%eax),%ecx
+	incl %ecx
+	movl %ecx,-12(%edi)
+	movl 8(%ebp),%ecx
+	movl %ecx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $12,%ebp
+	jmp *(%ebp)
+Lc2zZ:
+	movl $20,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+Lc2Ah:
+	addl $_c2A2_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2A2_info
+Lc2A3:
+	jmp *(%esi)
+	.long  _c2zO_info - _c2zO_info_dsp
+.text
+	.align 2
+_c2A2_info_dsp:
+.text
+	.align 2
+	.long	130
+	.long	32
+_c2A2_info:
+Lc2A2:
+	call 1f
+1:	popl	%eax
+	addl $32,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2Ae
+Lc2Ad:
+	movl 3(%esi),%ecx
+	movl 7(%esi),%edx
+	movl %eax,64(%esp)
+	movl L_ghczmprim_GHCziTypes_ZC_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-28(%edi)
+	movl 4(%ebp),%eax
+	movl %eax,-24(%edi)
+	movl %ecx,-20(%edi)
+	movl 64(%esp),%eax
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	leal -26(%edi),%ecx
+	movl %ecx,-12(%edi)
+	movl %edx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $12,%ebp
+	jmp *(%ebp)
+Lc2Ae:
+	movl $32,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2A2_info - _c2A2_info_dsp
+.text
+	.align 2
+_r1Vd_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+_r1Vd_info:
+Lc2Al:
+	call 1f
+1:	popl	%eax
+	addl $8,%edi
+	movl 16(%ebx),%ecx
+	movl 8(%ebx),%edx
+	cmpl 856(%ebx),%edi
+	ja Lc2Ap
+Lc2Ao:
+	addl $_s27x_info-(1b)+0,%eax
+	movl %eax,-4(%edi)
+	movl %edx,(%edi)
+	movl %ecx,8(%ebx)
+	leal -3(%edi),%esi
+	jmp _s27x_info
+Lc2Ap:
+	movl $8,904(%ebx)
+	movl %ecx,16(%ebx)
+	movl %edx,8(%ebx)
+	movl %eax,%esi
+	addl $_r1Vd_closure-(1b)+0,%esi
+	jmp *-8(%ebx)
+	.long  _r1Vd_info - _r1Vd_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfAlternativeParserzuzdszddmmany_closure
+_Parsing_zdfAlternativeParserzuzdszddmmany_closure:
+	.long	_Parsing_zdfAlternativeParserzuzdszddmmany_info
+.text
+	.align 2
+_Parsing_zdfAlternativeParserzuzdszddmmany_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_zdfAlternativeParserzuzdszddmmany_info
+_Parsing_zdfAlternativeParserzuzdszddmmany_info:
+Lc2Bn:
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _r1Vd_info
+	.long  _Parsing_zdfAlternativeParserzuzdszddmmany_info - _Parsing_zdfAlternativeParserzuzdszddmmany_info_dsp
+.data
+	.align 2
+.align 0
+_r1Ve_closure:
+	.long	_r1Ve_info
+.text
+	.align 2
+_s27P_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	1
+	.long	10
+_s27P_info:
+Lc2C5:
+	call 1f
+1:	popl	%eax
+	movl 8(%ebx),%ecx
+	leal -12(%ebp),%edx
+	cmpl 840(%ebx),%edx
+	jb Lc2C6
+Lc2C7:
+	addl $_c2BW_info-(1b)+0,%eax
+	movl %eax,-8(%ebp)
+	movl %ecx,8(%ebx)
+	movl %esi,%eax
+	movl 3(%esi),%esi
+	movl %eax,-4(%ebp)
+	addl $-8,%ebp
+	jmp _stg_ap_p_fast
+Lc2C6:
+	movl %ecx,8(%ebx)
+	jmp *-8(%ebx)
+	.long  _s27P_info - _s27P_info_dsp
+.text
+	.align 2
+_c2BW_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2BW_info:
+Lc2BW:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2C3
+Lc2C4:
+	movl L_base_GHCziBase_Nothing_closure$non_lazy_ptr-(1b)+0(%eax),%eax
+	leal 1(%eax),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2C3:
+	addl $_c2Cd_info-(1b)+0,%eax
+	movl %eax,(%ebp)
+	movl 2(%esi),%esi
+	testw $7,%si
+	jne _c2Cd_info
+Lc2Cf:
+	jmp *(%esi)
+	.long  _c2BW_info - _c2BW_info_dsp
+.text
+	.align 2
+_c2Cd_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2Cd_info:
+Lc2Cd:
+	call 1f
+1:	popl	%eax
+	addl $_c2Cj_info-(1b)+0,%eax
+	movl %eax,-4(%ebp)
+	movl 7(%esi),%eax
+	movl %eax,8(%ebx)
+	movl 3(%esi),%ecx
+	movl 4(%ebp),%esi
+	movl %eax,(%ebp)
+	movl %ecx,4(%ebp)
+	addl $-4,%ebp
+	jmp _s27P_info
+	.long  _c2Cd_info - _c2Cd_info_dsp
+.text
+	.align 2
+_c2Cj_info_dsp:
+.text
+	.align 2
+	.long	2
+	.long	32
+_c2Cj_info:
+Lc2Cj:
+	call 1f
+1:	popl	%eax
+	movl %esi,%ecx
+	andl $7,%ecx
+	cmpl $2,%ecx
+	jae Lc2CN
+Lc2CO:
+	addl $32,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2Cv
+Lc2Cu:
+	movl L_ghczmprim_GHCziTypes_ZC_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-28(%edi)
+	movl 8(%ebp),%ecx
+	movl %ecx,-24(%edi)
+	movl L_ghczmprim_GHCziTypes_ZMZN_closure$non_lazy_ptr-(1b)+0(%eax),%ecx
+	incl %ecx
+	movl %ecx,-20(%edi)
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	leal -26(%edi),%ecx
+	movl %ecx,-12(%edi)
+	movl 4(%ebp),%ecx
+	movl %ecx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $12,%ebp
+	jmp *(%ebp)
+Lc2Cv:
+	movl $32,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+Lc2CN:
+	addl $_c2Cy_info-(1b)+0,%eax
+	movl %eax,4(%ebp)
+	movl 2(%esi),%esi
+	addl $4,%ebp
+	testw $7,%si
+	jne _c2Cy_info
+Lc2Cz:
+	jmp *(%esi)
+	.long  _c2Cj_info - _c2Cj_info_dsp
+.text
+	.align 2
+_c2Cy_info_dsp:
+.text
+	.align 2
+	.long	1
+	.long	32
+_c2Cy_info:
+Lc2Cy:
+	call 1f
+1:	popl	%eax
+	addl $32,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2CK
+Lc2CJ:
+	movl 3(%esi),%ecx
+	movl 7(%esi),%edx
+	movl %eax,64(%esp)
+	movl L_ghczmprim_GHCziTypes_ZC_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-28(%edi)
+	movl 4(%ebp),%eax
+	movl %eax,-24(%edi)
+	movl %ecx,-20(%edi)
+	movl 64(%esp),%eax
+	movl L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr-(1b)+0(%eax),%ecx
+	movl %ecx,-16(%edi)
+	leal -26(%edi),%ecx
+	movl %ecx,-12(%edi)
+	movl %edx,-8(%edi)
+	movl L_base_GHCziBase_Just_con_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-4(%edi)
+	leal -15(%edi),%eax
+	movl %eax,(%edi)
+	leal -2(%edi),%esi
+	addl $8,%ebp
+	jmp *(%ebp)
+Lc2CK:
+	movl $32,904(%ebx)
+	jmp *L_stg_gc_unpt_r1$non_lazy_ptr-(1b)+0(%eax)
+	.long  _c2Cy_info - _c2Cy_info_dsp
+.text
+	.align 2
+_r1Ve_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+_r1Ve_info:
+Lc2CR:
+	call 1f
+1:	popl	%eax
+	addl $8,%edi
+	movl 16(%ebx),%ecx
+	movl 8(%ebx),%edx
+	cmpl 856(%ebx),%edi
+	ja Lc2CV
+Lc2CU:
+	addl $_s27P_info-(1b)+0,%eax
+	movl %eax,-4(%edi)
+	movl %edx,(%edi)
+	movl %ecx,8(%ebx)
+	leal -3(%edi),%esi
+	jmp _s27P_info
+Lc2CV:
+	movl $8,904(%ebx)
+	movl %ecx,16(%ebx)
+	movl %edx,8(%ebx)
+	movl %eax,%esi
+	addl $_r1Ve_closure-(1b)+0,%esi
+	jmp *-8(%ebx)
+	.long  _r1Ve_info - _r1Ve_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfAlternativeParserzuzdszddmsome_closure
+_Parsing_zdfAlternativeParserzuzdszddmsome_closure:
+	.long	_Parsing_zdfAlternativeParserzuzdszddmsome_info
+.text
+	.align 2
+_Parsing_zdfAlternativeParserzuzdszddmsome_info_dsp:
+.text
+	.align 2
+	.long	131087
+	.long	0
+	.long	15
+.globl _Parsing_zdfAlternativeParserzuzdszddmsome_info
+_Parsing_zdfAlternativeParserzuzdszddmsome_info:
+Lc2DQ:
+	movl 16(%ebx),%eax
+	movl %eax,16(%ebx)
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _r1Ve_info
+	.long  _Parsing_zdfAlternativeParserzuzdszddmsome_info - _Parsing_zdfAlternativeParserzuzdszddmsome_info_dsp
+.data
+	.align 2
+.align 0
+_r1Vf_closure:
+	.long	_r1Vf_info
+	.long	0
+.text
+	.align 2
+_r1Vf_info_dsp:
+.text
+	.align 2
+	.long	_S2ev_srt-(_r1Vf_info)+0
+	.long	65541
+	.long	0
+	.long	65551
+_r1Vf_info:
+Lc2E3:
+	movl 8(%ebx),%eax
+	movl %eax,8(%ebx)
+	jmp _base_GHCziErr_error_info
+	.long  _r1Vf_info - _r1Vf_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfMonadParserzuzdczgzg_closure
+_Parsing_zdfMonadParserzuzdczgzg_closure:
+	.long	_Parsing_zdfMonadParserzuzdczgzg_info
+	.long	0
+.text
+	.align 2
+_s289_info_dsp:
+.text
+	.align 2
+	.long	65541
+	.long	1
+	.long	10
+_s289_info:
+Lc2En:
+	movl 3(%esi),%esi
+	jmp _stg_ap_0_fast
+	.long  _s289_info - _s289_info_dsp
+.text
+	.align 2
+_Parsing_zdfMonadParserzuzdczgzg_info_dsp:
+.text
+	.align 2
+	.long	_S2ev_srt-(_Parsing_zdfMonadParserzuzdczgzg_info)+4
+	.long	131087
+	.long	0
+	.long	196623
+.globl _Parsing_zdfMonadParserzuzdczgzg_info
+_Parsing_zdfMonadParserzuzdczgzg_info:
+Lc2Eq:
+	call 1f
+1:	popl	%eax
+	movl 16(%ebx),%ecx
+	movl 8(%ebx),%edx
+	movl %eax,64(%esp)
+	leal -12(%ebp),%eax
+	cmpl 840(%ebx),%eax
+	jb Lc2Er
+Lc2Es:
+	addl $8,%edi
+	cmpl 856(%ebx),%edi
+	ja Lc2Eu
+Lc2Et:
+	movl 64(%esp),%eax
+	addl $_s289_info-(1b)+0,%eax
+	movl %eax,-4(%edi)
+	movl %ecx,(%edi)
+	movl 64(%esp),%eax
+	movl L_Parsing_zdfMonadParser_closure$non_lazy_ptr-(1b)+0(%eax),%ecx
+	incl %ecx
+	movl %ecx,8(%ebx)
+	movl L_stg_ap_pp_info$non_lazy_ptr-(1b)+0(%eax),%eax
+	movl %eax,-12(%ebp)
+	movl %edx,-8(%ebp)
+	leal -3(%edi),%eax
+	movl %eax,-4(%ebp)
+	addl $-12,%ebp
+	jmp _base_GHCziBase_zgzgze_info
+Lc2Eu:
+	movl $8,904(%ebx)
+Lc2Er:
+	movl %ecx,16(%ebx)
+	movl %edx,8(%ebx)
+	movl 64(%esp),%eax
+	movl L_Parsing_zdfMonadParserzuzdczgzg_closure$non_lazy_ptr-(1b)+0(%eax),%esi
+	jmp *-8(%ebx)
+	.long  _Parsing_zdfMonadParserzuzdczgzg_info - _Parsing_zdfMonadParserzuzdczgzg_info_dsp
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfMonadParser_closure
+_Parsing_zdfMonadParser_closure:
+	.long	_base_GHCziBase_DZCMonad_static_info
+	.long	_Parsing_zdfApplicativeParser_closure+1
+	.long	_Parsing_zdfMonadParser1_closure+3
+	.long	_Parsing_zdfMonadParserzuzdczgzg_closure+2
+	.long	_Parsing_zdfAlternativeParser4_closure+2
+	.long	_r1Vf_closure+1
+	.long	0
+.data
+	.align 2
+.align 0
+.globl _Parsing_zdfAlternativeParser_closure
+_Parsing_zdfAlternativeParser_closure:
+	.long	_base_GHCziBase_DZCAlternative_static_info
+	.long	_Parsing_zdfApplicativeParser_closure+1
+	.long	_Parsing_failure1_closure+1
+	.long	_Parsing_zdfAlternativeParser1_closure+3
+	.long	_r1Ve_closure+2
+	.long	_r1Vd_closure+2
+	.long	1
+.const_data
+	.align 2
+.align 0
+_S2ev_srt:
+	.long	_base_GHCziErr_error_closure
+	.long	_Parsing_zdfMonadParser_closure
+	.long	_Parsing_zdfMonadParserzuzdczgzg_closure
+.section __TEXT,__textcoal_nt,coalesced,no_toc
+.weak_definition ___i686.get_pc_thunk.ax
+.private_extern ___i686.get_pc_thunk.ax
+___i686.get_pc_thunk.ax:
+	movl (%esp), %eax
+	ret
+.non_lazy_symbol_pointer
+L_Parsing_chain1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_chain1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_char1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_char1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_digit1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_digit1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_item1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_item1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_oneOrMore1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_oneOrMore1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_readsP_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_readsP_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_sat1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_sat1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdfAlternativeParser1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdfAlternativeParser1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdfAlternativeParser2_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdfAlternativeParser2_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdfAlternativeParser3_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdfAlternativeParser3_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdfAlternativeParser4_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdfAlternativeParser4_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdfApplicativeParser1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdfApplicativeParser1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdfApplicativeParser2_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdfApplicativeParser2_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdfFunctorParser1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdfFunctorParser1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdfMonadParser1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdfMonadParser1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdfMonadParser_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdfMonadParser_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdfMonadParserzuzdczgzg_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdfMonadParserzuzdczgzg_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zdwa_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zdwa_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zlZCzg1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zlZCzg1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_Parsing_zzeroOrMore1_closure$non_lazy_ptr:
+	.indirect_symbol _Parsing_zzeroOrMore1_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_base_GHCziBase_Just_con_info$non_lazy_ptr:
+	.indirect_symbol _base_GHCziBase_Just_con_info
+	.long	0
+.non_lazy_symbol_pointer
+L_base_GHCziBase_Nothing_closure$non_lazy_ptr:
+	.indirect_symbol _base_GHCziBase_Nothing_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_base_GHCziBase_id_closure$non_lazy_ptr:
+	.indirect_symbol _base_GHCziBase_id_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_base_TextziParserCombinatorsziReadPrec_minPrec_closure$non_lazy_ptr:
+	.indirect_symbol _base_TextziParserCombinatorsziReadPrec_minPrec_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_ghczmprim_GHCziTuple_Z2T_con_info$non_lazy_ptr:
+	.indirect_symbol _ghczmprim_GHCziTuple_Z2T_con_info
+	.long	0
+.non_lazy_symbol_pointer
+L_ghczmprim_GHCziTypes_ZC_con_info$non_lazy_ptr:
+	.indirect_symbol _ghczmprim_GHCziTypes_ZC_con_info
+	.long	0
+.non_lazy_symbol_pointer
+L_ghczmprim_GHCziTypes_ZMZN_closure$non_lazy_ptr:
+	.indirect_symbol _ghczmprim_GHCziTypes_ZMZN_closure
+	.long	0
+.non_lazy_symbol_pointer
+L_stg_ap_2_upd_info$non_lazy_ptr:
+	.indirect_symbol _stg_ap_2_upd_info
+	.long	0
+.non_lazy_symbol_pointer
+L_stg_ap_p_info$non_lazy_ptr:
+	.indirect_symbol _stg_ap_p_info
+	.long	0
+.non_lazy_symbol_pointer
+L_stg_ap_pp_info$non_lazy_ptr:
+	.indirect_symbol _stg_ap_pp_info
+	.long	0
+.non_lazy_symbol_pointer
+L_stg_gc_unpt_r1$non_lazy_ptr:
+	.indirect_symbol _stg_gc_unpt_r1
+	.long	0
+.non_lazy_symbol_pointer
+L_stg_upd_frame_info$non_lazy_ptr:
+	.indirect_symbol _stg_upd_frame_info
+	.long	0
+.subsections_via_symbols
+.ident "GHC 7.10.3"
+

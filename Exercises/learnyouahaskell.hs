@@ -378,8 +378,8 @@ data Day = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
 	instance Functor [] where
 		fmap = map
 
-	instance Functor Maybe where
-		fmap f (Just x) = Just (f x)    -- replace f by Maybe
+	instance Functor Maybe where 
+		fmap f (Just x) = Just (f x)    -- f is function (a -> b)
 		fmap f Nothing  = Nothing
 -}
 
@@ -439,9 +439,104 @@ solveRPN = head . foldl foldingFunction [] . words
           foldingFunction xs numberString = read numberString : xs
 
 
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+-- FUNCTORS, APPLICATIVE FUNCTORS AND MONOIDS
+
+{-
+	FUNCTORS: Basically things that you can map over. 
+		fmap :: (a -> b) -> f a -> f b
+
+		instance Functor f where
+			fmap :: (a -> b) -> f a -> f b
+
+	We can change the f to e.g Maybe - NOT Maybe a
+	Because of the reason, if we mentally switch f to Maybe, we have 
+		fmap :: (a -> b) -> Maybe a -> Maybe b
+	Had we written Maybe a, we would have
+		fmap :: (a -> b) -> Maybe a a -> Maybe a b
+	which doesn't make sense, because Maybe only takes one parameter
+
+	I/O is an instance of Functor
+		instance Functor IO where  
+    		fmap f action = do result <- action  
+        					   return (f result) 
+
+	Limited to just I/O, the form of fmap will thus be
+		fmap :: (a -> b) -> IO a -> IO b
+-}
 
 
+{-
+	APPLICATIVE FUNCTORS: "beefed up functors"
+	
+		class (Functor f) => Applicative f where  
+    		pure :: a -> f a  
+   			(<*>) :: f (a -> b) -> f a -> f b  
 
+   	So any class that wants to be Applicative has to be a Functor as well
+
+   	***pure*** We take a value and we wrap it in an applicative functor that 
+   	has that value as the result inside it.
+
+   	instance Applicative Maybe where
+   		pure = Just
+
+	*** <*> *** looks very similar to fmap. But where fmap takes a function, 
+	a functor and then applies that function to the functor,
+		<*> instead takes a function wrapped inside a functor, another functor,
+	"extracts" the function and then maps it over the other functor
+
+		instance Applicative Maybe where
+			Nothing <*> _ = Nothing
+			(Just f) <*> something = fmap f something
+
+	Example: (Just (+3)) <*> (Just 4) == Just 7
+
+	Use pure if you're dealing with Maybe values in an applicative context 
+	(i.e. using them with <*>), otherwise stick to Just, example (these are equivalent)
+		Just (+3)) <*> (Just 4) 
+		pure (+3) <*> (Just 4)  <-- use this!
+
+	pure f <*> x equals fmap f x
+
+	Control.Applicative exports a function called <$>, which is just fmap as an infix operator. 
+	Here's how it's defined:	
+		(<$>) :: (Functor f) => (a -> b) -> f a -> f b  
+		f <$> x = fmap f x 
+
+		pure f <*> x <*> y <*> ...
+		fmap f x <*> y <*> ...
+		f <$> x <*> y <*> z
+
+	If the parameters weren't applicative functors but normal values, we'd write f x y z.
+
+		ghci> (++) <$> Just "johntra" <*> Just "volta"  
+		Just "johntravolta" 
+			== (++) <$> Just "jontra" <*> Just "volta"
+			== Just ("jontra"++) <*> Just "volta"
+			== Just "jontravolta"
+
+		ghci> (++) "johntra" "volta"  
+		"johntravolta"  
+
+	Because Char isn't a member of the Applicative type class, we could not write
+		(++) <$> "johntra" <*> "volta"  
+
+
+	Lists are a member of the Applicative type class, meaning we have a lot of ways
+	to now write the same thing
+		
+		map    (+1)   [1..10]
+		fmap   (+1)   [1..10]
+		[(+1)] <*>  [1..10]
+		[(+)] <*> [1] <*> [1..10]
+			== [(1+)] <*> [1..10]
+		(+1) <$> [1..10]
+-}
 
 
 

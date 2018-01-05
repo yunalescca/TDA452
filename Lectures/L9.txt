@@ -94,7 +94,7 @@ act 1 >> do ...
 
 do v <- act1
    ...
-   act n
+   actn
 
 ===
 
@@ -139,9 +139,8 @@ THREE MONADS
 -- Maybe is a very simple Monad
 
 instance Monad Maybe where
-
-Just x  >>= k = k x -- if we just have an x, then we can  						 feed that to the function k by just 						taking the x out of the just and 						   applying k to that value
-Nothing >>= _ = Nothing
+	(Just x) >>= k = k x -- if we just have an x, then we can feed that to the function						   k by just taking the x out of the Just and applying k to 						   that value
+	Nothing  >>= _ = Nothing
 
 return        = Just
 fail s        = Nothing

@@ -117,7 +117,7 @@ fromHand Empty     = []
 fromHand (Add c h) = c : fromHand h
 
 -- * Converting lists to hands
-toHand = foldr Add Empty
+toHand = foldr Add Empty -- xs
 
 
 -- * We want to create an arbitrary hand from an 

@@ -116,7 +116,7 @@ addressRegister =
 -- In a language with exceptions this would be hidden away using exceptions,
 -- you'd just to a sequence of lookups and then catch the exception
 -- when the lookup fails (tidier code).
--- Haskell doesn't have exceptions, we have to program then ourselves
+-- Haskell doesn't have exceptions, we have to program them ourselves
 billingAddress :: CarReg -> Maybe (Name, Address)
 billingAddress car = 
     case lookup car carRegister of
@@ -139,7 +139,7 @@ billingAddress' car =
 
 
 -- getting rid of the do-blocks
--- from lecture notes: Just x = f = f x
+-- from lecture notes: Just x >>= f = f x
 -- So *lookup car carRegister* will produce Just pnr, and we feed that
 -- to the function f (which is the rest of the instructions)
 -- And if we get Nothing, we will give back Nothing

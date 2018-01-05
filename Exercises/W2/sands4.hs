@@ -94,7 +94,7 @@ takeLine' cs = takeWhile' (\x -> x  /= '\n') cs
 -- Building functions from operators. Usually an operator has 
 -- arguments on either side. 
 -- Haskell defines functions which is an operator, which is given
--- one but not both of its arguments. (a¢) b = a ¢ b
+-- one but not both of its arguments. (a ¢) b = a ¢ b
 
 takeLine'' cs = takeWhile' (/= '\n') cs 
 

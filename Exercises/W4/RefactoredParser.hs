@@ -27,7 +27,7 @@ import Data.Char
 import Control.Applicative
 import Control.Monad(liftM, ap)
 
-{-}
+{-
 instance Monad RefactoredParser where
     (>>=)  = (>*>) 
     return = success
@@ -43,7 +43,7 @@ Aim: reusable Parser combinators including
 
 -- The same as it was before (type Parser = ...)
 -- But now we have built a new type, which is exactly how it
--- was before, except now it is hidden insi de a constructor P
+-- was before, except now it is hidden inside a constructor P
 -- When we only have one parameter, then by convention we call it
 -- a newtype
 -- Used by the function parse 
@@ -57,7 +57,7 @@ newtype Parser a = P (String -> Maybe (a,String))
 
 -- * Takes a Parser and a String, and applies the parser to the string
 -- Our library is exporting the type Parser, but not exporting P
--- So the user of the library won't be able to grab the functiob from inside,
+-- So the user of the library won't be able to grab the function from inside,
 -- the only thing they can use is the parse function
 parse :: Parser a -> String -> Maybe (a, String)
 parse (P func) s = func s -- s can be omitted
@@ -67,16 +67,14 @@ parse (P func) s = func s -- s can be omitted
 -- gives you Nothing
 -- a constructor P containing a Nothing, always producing Nothing
 failure :: Parser a -- always fails
-failure = P $ \s ->
-          Nothing
+failure = P (\_ -> Nothing)
 
 
 -- Doesn't care what a is, always returns it and the string
 -- We will apply success over a string s
 -- parse (success 42) "apa" --- applies (success 42) over "apa"
 success :: a -> Parser a
-success a = P $ \s ->
-            Just(a, s)
+success a = P (\s -> Just(a, s))
 
 -----------------------------------------------------------------------------
 

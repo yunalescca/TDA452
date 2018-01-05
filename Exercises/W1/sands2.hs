@@ -47,7 +47,7 @@ prop_rankBeats r1 r2  = r1 == r2 |+| r1 `rankBeats` r2
                                  |+| r2 `rankBeats` r1
 
 infixr 2 |+| -- infix right 
-True  |+| False = True2
+True  |+| False = True
 False |+| True  = True
 _     |+| _     = False
 
@@ -56,7 +56,7 @@ _     |+| _     = False
 -- Card: a data type containing a Rank and a Suit
 -- 
 
--- Typical in Haskell to use the same name for the constructor as for thed data type
+-- Typical in Haskell to use the same name for the constructor as for the data type
 -- Card on LHS is the datatype, and Card on RHS is just a constructor taking two arguments
 -- :t tells the type of a *data constructor* so 
 -- :t Card :: Rank -> Suit -> Card (a function)

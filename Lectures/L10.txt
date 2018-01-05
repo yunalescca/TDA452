@@ -105,7 +105,7 @@ OTHER IO VARIANTS
 
 Controlling Laziness (The darker side)
 
--- Haskell includes some deatures to reduce the amount of laziness lalowing us to decide when something gets evaluated
+-- Haskell includes some features to reduce the amount of laziness allowing us to decide when something gets evaluated
 
 -- Used for performance tuning, particularly for controlling space usage
 
@@ -142,7 +142,7 @@ when we get to the end we can start with the addition
 	- A function is tail recursive if the recursive call itself produces the result
 
 	- Example
-		last :: [a] - >a
+		last :: [a] -> a
 		last [x] = x
 		last (x:xs) = last xs
 

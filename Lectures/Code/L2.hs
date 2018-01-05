@@ -104,41 +104,43 @@ handBeats (Add card hand) beat = cardBeats card beat || handBeats hand beat
 chooseCard :: Card -> Hand -> Card
 
 chooseCard beat hand 
-    | handBeats hand beat = lowestCard (betterCards hand beat)
-    | haveSuit hand (suit beat) = lowestCard (sameSuit hand (suit beat))   
-    | otherwise = lowestCard hand 
+    -- if We have a card on the hand that can beat the Card
+    | handBeats hand beat = lowestCard (betterCards hand beat) -- pick the lowest card of the cards in betterCards hand
+    | haveSuit hand (suit beat) = lowestCard (sameSuit hand (suit beat)) -- Else follow suit, if possible 
+    | otherwise = lowestCard hand -- else just lowest card
 
 
-
+-- * If there is a card in our hand with the suit of Suit
 haveSuit :: Hand -> Suit -> Bool
-
 haveSuit Empty s     = False
 haveSuit (Add c h) s = suit c == s || haveSuit h s 
 
 
-
+-- * Find the lowest card on our hand
 lowestCard :: Hand -> Card
-
---lowestCard Empty = -- not the base case
-lowestCard (Add c Empty) = c
-lowestCard (Add c h) | rank c < rank low = c
-                     | otherwise = low 
+lowestCard (Add c Empty) = c --lowestCard Empty = -- not the base case
+lowestCard (Add c h) 
+    | rank c < rank low  = c
+    | otherwise          = low 
+    
     where 
         low = lowestCard h -- remaining hand
 
 
+-- * Add all cards to the hand which will beat the card Card (beat)
 betterCards :: Hand -> Card -> Hand
-
 betterCards Empty beat     = Empty
-betterCards (Add c h) beat | cardBeats c beat = Add c (betterCards h beat)
-                           | otherwise = betterCards h beat
+betterCards (Add c h) beat 
+    | cardBeats c beat     = Add c (betterCards h beat)
+    | otherwise            = betterCards h beat
 
 
+-- * Returns a hand with cards of the same suit as Suit
 sameSuit :: Hand -> Suit -> Hand
-
-sameSuit Empty s     = Empty
-sameSuit (Add c h) s | suit c ==  s = Add c (sameSuit h s)
-                     | otherwise = sameSuit h s
+sameSuit Empty s   = Empty
+sameSuit (Add c h) s 
+    | suit c ==  s = Add c (sameSuit h s)
+    | otherwise    = sameSuit h s
 
 
 

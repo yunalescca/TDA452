@@ -84,7 +84,7 @@ insert x (y:ys)
 
 -- We want to randomly generate sorted list
 prop_insert x xs = insert x (sort xs) == sort (x:xs)
-    -- to similar to definition (next week)
+    -- too similar to definition (next week)
 
 ----------------------------------------------------------------------
 

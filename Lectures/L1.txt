@@ -10,8 +10,7 @@
 
 - toEuro sek = sek / exhangeRate -- sek is NOT of some type toEuro. toEuro is a function which has one argument
 
--
-toEuro sek = sek / exhangeRate
+- toEuro sek = sek / exhangeRate
 
 toSEK euro = euro * exhangeRate
 ::: The toEuro definition ends where toSek definition starts, because they are in the same column. We could also write

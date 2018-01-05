@@ -50,3 +50,8 @@ readExpr :: String -> Maybe Expr
 readExpr s = case parse expr (filter (not.isSpace) s) of
                  Just (e, "") -> Just e
                  _            -> Nothing
+
+
+
+
+                 

@@ -9,7 +9,7 @@ LISTS
 
 - data List a = Empty | Add a (List a) --- can add parameters 
 
-- Pseudokode:   data [a] = [ ] | a : [a]
+- Pseudocode:   data [a] = [ ] | a : [a]
 
 - collect : when you run quickCheck you will see how many n:s are 
 less than the length of xs, and how many are bigger than it.

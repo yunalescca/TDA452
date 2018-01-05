@@ -108,7 +108,7 @@ factor = do n <- number
 prop_ShowReadExpr:: Expr -> Bool
 prop_ShowReadExpr e = let s       = showExpr e 
                           Just e' = readExpr s in 
-    showExpr e' == s 
+                          showExpr e' == s 
 
 
 
@@ -158,6 +158,27 @@ simplify (Cos e) = Cos (simplify e)
 
 prop_simplify :: Expr -> Double -> Bool
 prop_simplify e x = (eval e x) == (eval (simplify e) x)
+
+
+
+differentiate :: Expr -> Expr
+differentiate (Num n)     = (Num 0)
+differentiate (Var _)     = (Num 1)
+differentiate (Add e1 e2) = simplify $ Add (differentiate e1) (differentiate e2)
+differentiate (Mul e1 e2) = simplify $ simplify $ 
+                            Add (Mul (differentiate e1) (e2)) 
+                                (Mul (e1) (differentiate e2))
+differentiate (Sin e)     = simplify $ Mul (Cos e) (differentiate e)
+differentiate (Cos e)     = simplify $ simplify $
+                            Mul (Num (-1)) (Mul (Sin e) (differentiate e))
+
+
+
+
+
+
+
+
 
 
 
