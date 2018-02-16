@@ -24,7 +24,7 @@ instance Show Expr where
 ex1 = Mul (Add (Num 1) (Num 2)) (Num 4)
 
 -- 1 + 2 * 4
-ex2 = Add (Num 1) (Mu2l (Num 2) (Num 4))
+ex2 = Add (Num 1) (Mul (Num 2) (Num 4))
 
 -- (y + 2) * x
 ex3 = Mul (Add (Var "y") (Num 2)) (Var "x")

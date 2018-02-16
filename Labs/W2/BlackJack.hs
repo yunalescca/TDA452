@@ -45,6 +45,7 @@ numberOfAces (Add c h)
     | rank c == Ace = numberOfAces h + 1
     | otherwise     = numberOfAces h
 
+exHand = Add (Card Jack Hearts) (Add (Card (Numeric 6) Hearts) (Add (Card Ace Hearts) Empty))
 
 -- | Calculates the hand's value. If value exceeds 21 and 
 -- there are aces, then a new value will be calculated 
@@ -107,6 +108,7 @@ deck suit = Add (Card (Numeric 2)  suit)
 
 
 -- | Given a deck and a hand, draw a card from the deck and place in the hand
+-- Returns the rest of the deck and the new hand as a pair
 draw :: Hand -> Hand -> (Hand, Hand)
 draw Empty _           = error "draw: the deck is empty"
 draw (Add c deck) hand = (deck, (Add c hand))
@@ -150,7 +152,7 @@ removeCard nthCard (Add c h) = Add c (removeCard (nthCard - 1) h)
 -- | Generates a random integer
 oneRandomInteger :: StdGen -> Integer -> Integer
 oneRandomInteger g sizeDeck  = n1
-    where (n1, g1)          = randomR (1, sizeDeck) g
+    where (n1, g1)           = randomR (1, sizeDeck) g
 
 
 -----------------------------------------------------------------------------

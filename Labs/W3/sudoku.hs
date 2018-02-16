@@ -7,7 +7,7 @@ import Data.Maybe(fromJust, listToMaybe)
 
 -----------------------------------------------------------------------------
 
--- | Representation of sudoku puzzlese (allows some junk)
+-- | Representation of sudoku puzzles (allows some junk)
 data Sudoku = Sudoku { rows :: [[Maybe Int]] }
  deriving (Show,Eq)  
 
@@ -74,7 +74,7 @@ isFilled (Sudoku rs) = and $ map (\x -> x /= Nothing) $ concat rs
 
 -- * B1
 
--- |b printSudoku sud prints a nice representation of the sudoku sud on
+-- |printSudoku sud prints a nice representation of the sudoku sud on
 -- the screen
 printSudoku :: Sudoku -> IO ()
 printSudoku (Sudoku rs) = 
